@@ -1,0 +1,3 @@
+﻿  client.cpp
+C:\Users\shinjoongeun\Documents\GitHub\DierectXProject\DirectX2DProejct\client\client.cpp(8,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+C:\Users\shinjoongeun\Documents\GitHub\DierectXProject\DirectX2DProejct\client\client.cpp(191,1): fatal error C1004: 예기치 않은 파일의 끝이 나타났습니다.

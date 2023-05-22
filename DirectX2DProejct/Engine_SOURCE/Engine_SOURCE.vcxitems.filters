@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{1875318b-410f-428f-80c7-b59f7dcad37f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Entity">
+      <UniqueIdentifier>{d64f4e7c-0e2a-4c13-9dbe-431d040dcfa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Math">
+      <UniqueIdentifier>{506d9ea7-8cd5-4949-b97a-595b92a951fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Time">
+      <UniqueIdentifier>{ef2631ec-0a53-4186-af22-2a9f6f3b3ef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{978b9d4c-6652-47e4-be98-fa9c83e1c1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{c9cd6c64-c2ff-4dae-b6ac-b08629051280}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{b879ee9c-0742-4392-a244-0ed088eda4bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="High Level Interface">
+      <UniqueIdentifier>{0d080220-105f-48c5-ae43-6e52617abdaf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CEntity.h">
+      <Filter>Common\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CEngine.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CEnums.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CMath.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CTime.h">
+      <Filter>Common\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CApplication.h">
+      <Filter>High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CGraphicDevice_Dx11.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp">
+      <Filter>Common\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CMath.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CTime.cpp">
+      <Filter>Common\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CApplication.cpp">
+      <Filter>High Level Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CGraphicDevice_Dx11.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)CMath.inl">
+      <Filter>Common\Math</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <ItemsProjectGuid>{a590f3bf-0c40-428a-a602-bdba17934953}</ItemsProjectGuid>
+    <ItemsProjectName>Shader_SOURCE</ItemsProjectName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

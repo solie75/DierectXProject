@@ -11,6 +11,14 @@ namespace sh::graphics
 {
 	class CGraphicDevice_Dx11
 	{
+	public:
+		CGraphicDevice_Dx11();
+		~CGraphicDevice_Dx11();
+
+		bool CreateSwapChain(const DXGI_SWAP_CHAIN_DESC* _desc, HWND _hWnd);
+		bool CreateTexture(const D3D11_TEXTURE2D_DESC* _desc, void* _data);
+		void Draw();
+
 	private:
 		// 실제 그래픽카드 하드웨어 객체
 		Microsoft::WRL::ComPtr<ID3D11Device> mDevice;
@@ -34,10 +42,6 @@ namespace sh::graphics
 
 		// 더블버퍼링 작업을 진행해주는 swapChain
 		Microsoft::WRL::ComPtr<IDXGISwapChain> mSwapChain;
-
-	public:
-		CGraphicDevice_Dx11();
-		~CGraphicDevice_Dx11();
 	};
 }
 

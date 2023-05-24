@@ -3,6 +3,9 @@
 
 #include "framework.h"
 #include "Editor_Window.h"
+#include "CApplication.h"
+
+sh::CApplication application;
 
 #define MAX_LOADSTRING 100
 
@@ -47,9 +50,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             if (WM_QUIT == msg.message)
-            {
                 break;
-            }
+
             if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
             {
                 TranslateMessage(&msg);
@@ -58,7 +60,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-            // 여기에서 게임 구동
+            // 여기서 게임 로직이 돌아가야한다.
+            application.Run();
         }
     }
 
@@ -115,6 +118,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+   application.SetWindow(hWnd, 1600, 900);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 

@@ -1,25 +1,28 @@
-﻿  CEntity.cpp
-  The contents of <filesystem> are available only with C++17 or later.
+﻿  CApplication.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(22,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(55,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(117,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
+  CEntity.cpp
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
+  CGraphicDevice_Dx11.cpp
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CGraphicDevice_Dx11.cpp(68,2): error C2084: 'bool sh::graphics::CGraphicDevice_Dx11::CreateSwapChain(const DXGI_SWAP_CHAIN_DESC *,HWND)' 함수에 이미 본문이 있습니다.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CGraphicDevice_Dx11.cpp(8): message : 'CreateSwapChain'의 이전 정의를 참조하십시오.
   CMath.cpp
-  The contents of <filesystem> are available only with C++17 or later.
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(22,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(55,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(117,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.cpp(19,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.cpp(37,16): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
   CTime.cpp
-  The contents of <filesystem> are available only with C++17 or later.
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(22,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(55,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(117,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CTime.cpp(27,29): warning C4244: '초기화 중': 'LONGLONG'에서 'double'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Input.cpp
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\Input.cpp(67,26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\Input.cpp(68,26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CResource.cpp
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
   Engine.cpp
   코드를 생성하고 있습니다...

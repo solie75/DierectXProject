@@ -6,15 +6,6 @@ namespace sh
 {
 	class CApplication
 	{
-	private:
-		bool mbInitialize = false;
-		std::unique_ptr<sh::graphics::CGraphicDevice_Dx11> graphicDevice;
-
-		//HDC mHDC; -> GPU API
-		HWND mHwnd;
-		UINT mWidth;
-		UINT mHeight;
-
 	public:
 		CApplication();
 		~CApplication();
@@ -29,6 +20,17 @@ namespace sh
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
 		HWND GetHwnd() { return mHwnd; }
+
+	private:
+		bool mbInitialize = false;
+		std::unique_ptr<sh::graphics::CGraphicDevice_Dx11> graphicDevice;
+
+		//HDC mHDC; -> GPU API
+		HWND mHwnd;
+		UINT mWidth;
+		UINT mHeight;
+
+
 	};
 }
 

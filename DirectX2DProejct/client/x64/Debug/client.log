@@ -1,26 +1,5 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(client.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  CEntity.cpp
-  The contents of <filesystem> are available only with C++17 or later.
+  CGraphicDevice_Dx11.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(22,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(55,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(117,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-  CMath.cpp
-  The contents of <filesystem> are available only with C++17 or later.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(22,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(55,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(117,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.cpp(19,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.cpp(37,16): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-  CTime.cpp
-  The contents of <filesystem> are available only with C++17 or later.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(22,1): error C2429: 언어 기능 'nested-namespace-definition'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(55,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.inl(117,8): error C2653: 'CMath': 클래스 또는 네임스페이스 이름이 아닙니다.
-  main.cpp
-  코드를 생성하고 있습니다...
+  client.vcxproj -> D:\신중은\DierectXProject\DirectX2DProejct\x64\Debug\Editor_Window.exe

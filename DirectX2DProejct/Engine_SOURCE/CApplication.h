@@ -1,6 +1,9 @@
 #pragma once
 #include "CEngine.h"
 #include "CGraphicDevice_Dx11.h"
+#include "CInput.h"
+#include "CTime.h"
+#include "CRenderer.h"
 
 namespace sh
 {

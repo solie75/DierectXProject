@@ -23,10 +23,17 @@ namespace sh
 
 	void CApplication::Initialize()
 	{
+		CTime::Initiailize();
+		CInput::Initialize();
+
+		render::Initialize(); // 왜 renderer 는 class 가 아니지?
+		
 	}
 
 	void CApplication::Update()
 	{
+		CTime::Update();
+		CInput::Update();
 	}
 
 	void CApplication::LateUpdate()
@@ -35,6 +42,8 @@ namespace sh
 
 	void CApplication::Render()
 	{
+		CTime::Render();
+
 		graphicDevice->Draw();
 	}
 
@@ -47,6 +56,7 @@ namespace sh
 			mHeight = height;
 
 			graphicDevice = std::make_unique<sh::graphics::CGraphicDevice_Dx11>();
+			sh::graphics::GetDevice() = graphicDevice.get();
 		}
 
 		RECT rt = { 0, 0, (LONG)width, (LONG)height };

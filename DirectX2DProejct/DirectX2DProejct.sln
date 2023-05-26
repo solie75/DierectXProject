@@ -5,11 +5,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Window", "client\client.vcxproj", "{2C24F414-A79D-4361-8F4D-FA778383417D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shader_SOURCE", "Shader\Shader.vcxitems", "{A590F3BF-0C40-428A-A602-BDBA17934953}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_SOURCE", "Engine_SOURCE\Engine_SOURCE.vcxitems", "{6CBC971F-39E2-4A96-A61C-728E56EA6114}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{B8D865AE-E927-4C29-A1EA-AD082402FE94}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shader_SOURCE", "Shader_SOURCE\Shader_SOURCE.vcxitems", "{16DB4E9B-9D59-4E10-B291-D71950EF4C3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,9 +63,9 @@ Global
 		SolutionGuid = {F7B47AAB-B23C-4575-B197-C959363EF6CD}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shader_SOURCE\Shader_SOURCE.vcxitems*{16db4e9b-9d59-4e10-b291-d71950ef4c3d}*SharedItemsImports = 9
 		Engine_SOURCE\Engine_SOURCE.vcxitems*{2c24f414-a79d-4361-8f4d-fa778383417d}*SharedItemsImports = 4
 		Engine_SOURCE\Engine_SOURCE.vcxitems*{6cbc971f-39e2-4a96-a61c-728e56ea6114}*SharedItemsImports = 9
-		Shader\Shader.vcxitems*{a590f3bf-0c40-428a-a602-bdba17934953}*SharedItemsImports = 9
 		Engine_SOURCE\Engine_SOURCE.vcxitems*{b8d865ae-e927-4c29-a1ea-ad082402fe94}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

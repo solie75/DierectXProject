@@ -7,22 +7,25 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37)
   CGraphicDevice_Dx11.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CGraphicDevice_Dx11.cpp(68,2): error C2084: 'bool sh::graphics::CGraphicDevice_Dx11::CreateSwapChain(const DXGI_SWAP_CHAIN_DESC *,HWND)' 함수에 이미 본문이 있습니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CGraphicDevice_Dx11.cpp(8): message : 'CreateSwapChain'의 이전 정의를 참조하십시오.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CGraphicDevice_Dx11.cpp(164,107): warning C4244: '인수': 'float'에서 'UINT8'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CMath.cpp
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
+  CRenderer.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
   CTime.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CTime.cpp(27,29): warning C4244: '초기화 중': 'LONGLONG'에서 'double'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Input.cpp
+  CInput.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\Input.cpp(67,26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\Input.cpp(68,26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CInput.cpp(67,26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CInput.cpp(68,26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CResource.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
   Engine.cpp
   코드를 생성하고 있습니다...
+  Engine.vcxproj -> D:\신중은\DierectXProject\DirectX2DProejct\x64\Debug\Engine_d.lib

@@ -38,6 +38,7 @@ namespace sh
 
 	void CApplication::LateUpdate()
 	{
+		render::Update();
 	}
 
 	void CApplication::Render()

@@ -14,7 +14,10 @@ namespace sh::graphics
 		D3D_FEATURE_LEVEL featureLevel = (D3D_FEATURE_LEVEL)0;
 
 		D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr
-			, deviceFlag, nullptr, 0, D3D11_SDK_VERSION, mDevice.GetAddressOf(), &featureLevel, mContext.GetAddressOf());
+			, deviceFlag, nullptr, 0
+			, D3D11_SDK_VERSION
+			, mDevice.GetAddressOf(), &featureLevel
+			, mContext.GetAddressOf());
 
 		//  SwapChain
 		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
@@ -54,6 +57,7 @@ namespace sh::graphics
 		depthStencilDesc.MipLevels = 0;
 
 		D3D11_SUBRESOURCE_DATA data;
+
 		if (!CreateTexture(&depthStencilDesc, &data))
 		{
 			return;
@@ -156,46 +160,6 @@ namespace sh::graphics
 		return true;
 	}
 
-	void CGraphicDevice_Dx11::Draw()
-	{
-		// rendertarget clear
-		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
-		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
-		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
-		
-		// viewport update
-		HWND hWnd = application.GetHwnd();
-		RECT winRect = {};
-		GetClientRect(hWnd, &winRect);
-		mViewPort = {
-			0.0f, 0.0f
-			, (float)(winRect.right - winRect.left)
-			, (float)(winRect.bottom - winRect.top)
-			, 0.0f, 1.0f
-		};
-		
-		BindViewPort(&mViewPort);
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
-
-		// 정점 데이터 정보 저장
-		UINT vertexsize = sizeof(render::Vertex);
-		UINT offset = 0;
-
-		mContext->IASetVertexBuffers(0, 1, &render::triangleBuffer, &vertexsize, &offset);
-		mContext->IASetIndexBuffer(render::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-		mContext->IASetInputLayout(render::triangleLayout);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		
-		// Bind VS, PS
-		mContext->VSSetShader(render::triangleVSShader, 0, 0);
-		mContext->PSSetShader(render::trianglePSShader, 0, 0);
-
-		// Draw Render target
-		//mContext->DrawIndexed(6, 0, 0);
-		mContext->DrawIndexed(1080, 0, 0);
-		mSwapChain->Present(0, 0);
-	}
-
 	bool CGraphicDevice_Dx11::CreateBuffer(ID3D11Buffer** _buffer, D3D11_BUFFER_DESC* _desc, D3D11_SUBRESOURCE_DATA* _data)
 	{
 		if (FAILED(mDevice->CreateBuffer(_desc, _data, _buffer)))
@@ -207,77 +171,168 @@ namespace sh::graphics
 	}
 	bool CGraphicDevice_Dx11::CreateShader()
 	{
-		// VS shader 경로
-
-		ID3DBlob* vsBlob = nullptr;
-		std::filesystem::path shaderPath = std::filesystem::current_path().parent_path();
-		shaderPath += L"\\Shader_SOURCE\\";
-
-		std::filesystem::path vsPath(shaderPath.c_str());
-		vsPath += L"TriangleVS.hlsl";
-
-		// VS shader 컴파일하여 이진파일로 만들기
-		D3DCompileFromFile(vsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "vs_5_0",
-			0, 0, &sh::render::triangleVSBlob, &sh::render::errorBlob);
-
-		// 이진 파일 버전의 VS shader 에 문제가 있는 경우
-		if (sh::render::errorBlob)
-		{
-			OutputDebugStringA((char*)sh::render::errorBlob->GetBufferPointer());
-			sh::render::errorBlob->Release();
-		}
-
-		// VS shader 생성
-		mDevice->CreateVertexShader(sh::render::triangleVSBlob->GetBufferPointer()
-			, sh::render::triangleVSBlob->GetBufferSize(), nullptr, &sh::render::triangleVSShader);
-
-		// PS shader 경로
-		//shaderPath = std::filesystem::current_path().parent_path();
-		//shaderPath += L"\\Shader_SOURCE\\";
-
-		std::filesystem::path psPath(shaderPath.c_str());
-		psPath += L"TrianglePS.hlsl";
-
-		// PS shader 컴파일하여 이진파일로 만들기
-		D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "ps_5_0",
-			0, 0, &sh::render::trianglePSBlob, &sh::render::errorBlob);
-
-		// 이진 파일 버전의 PS shader 에 문제가 있는 경우
-		if (sh::render::errorBlob)
-		{
-			OutputDebugStringA((char*)sh::render::errorBlob->GetBufferPointer());
-			sh::render::errorBlob->Release();
-		}
-
-		// PS shader 생성
-		mDevice->CreatePixelShader(sh::render::trianglePSBlob->GetBufferPointer(),
-			sh::render::trianglePSBlob->GetBufferSize(), nullptr, &sh::render::trianglePSShader);
-
-		// Input Layout 배열 생성 (정점 구조 정보를 넘겨주기 위함)
-		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
-
-		arrLayout[0].AlignedByteOffset = 0;
-		arrLayout[0].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		arrLayout[0].InputSlot = 0;
-		arrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		arrLayout[0].SemanticName = "Position";
-		arrLayout[0].SemanticIndex = 0;
-
-		arrLayout[1].AlignedByteOffset = 12;
-		arrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		arrLayout[1].InputSlot = 0;
-		arrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		arrLayout[1].SemanticName = "Color";
-		arrLayout[1].SemanticIndex = 0;
-
-		mDevice->CreateInputLayout(arrLayout, 2, render::triangleVSBlob->GetBufferPointer()
-			, render::triangleVSBlob->GetBufferSize(), &render::triangleLayout);
-
 		return true;
 	}
+
+	bool CGraphicDevice_Dx11::CreateVertexShader(const void* pShaderByteCode, SIZE_T BytecodeLength, ID3D11VertexShader** ppVertexShader)
+	{
+		if (!FAILED(mDevice->CreateVertexShader(pShaderByteCode, BytecodeLength, nullptr, ppVertexShader)))
+		{
+			return false;
+		}
+		return true;
+	}
+	bool CGraphicDevice_Dx11::CreatePixelShader(const void* pShaderByteCode, SIZE_T BytecodeLength, ID3D11PixelShader** ppPixelShader)
+	{
+		if (!FAILED(mDevice->CreatePixelShader(pShaderByteCode, BytecodeLength, nullptr, ppPixelShader)))
+		{
+			return false;
+		}
+		return true;
+	}
+	bool CGraphicDevice_Dx11::CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDesc
+		, UINT NumElement, ID3DBlob* byteCode, ID3D11InputLayout** ppInputLayout)
+	{
+		if (!FAILED(mDevice->CreateInputLayout(pInputElementDesc, NumElement, byteCode->GetBufferPointer(), byteCode->GetBufferSize(), ppInputLayout)))
+		{
+			return false;
+		}
+		return true;
+	}
+
 	void CGraphicDevice_Dx11::BindViewPort(D3D11_VIEWPORT* viewPort)
 	{
 		mContext->RSSetViewports(1, viewPort);
+	}
+
+	void CGraphicDevice_Dx11::BindVertexBuffer(UINT StartSlot, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets)
+	{
+		mContext->IASetVertexBuffers(StartSlot, 1, ppVertexBuffers, pStrides, pOffsets);
+	}
+
+	void CGraphicDevice_Dx11::BindIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, UINT Offset)
+	{
+		mContext->IASetIndexBuffer(pIndexBuffer, Format, Offset);
+	}
+
+	void CGraphicDevice_Dx11::BindInputLayout(ID3D11InputLayout* pInputLayout)
+	{
+		mContext->IASetInputLayout(pInputLayout);
+	}
+
+	void CGraphicDevice_Dx11::BindPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY Topology)
+	{
+		mContext->IASetPrimitiveTopology(Topology);
+	}
+
+	void CGraphicDevice_Dx11::SetConstantBuffer(ID3D11Buffer* _buffer, void* _data, UINT size)
+	{
+		D3D11_MAPPED_SUBRESOURCE subRes = {};
+		mContext->Map(_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subRes);
+		memcpy(subRes.pData, _data, size);
+		mContext->Unmap(_buffer, 0);
+	}
+	void CGraphicDevice_Dx11::BindConstantBuffer(eShaderStage _stage, eCBType _type, ID3D11Buffer* _buffer)
+	{
+		switch (_stage)
+		{
+		case eShaderStage::VS :
+			mContext->VSSetConstantBuffers((UINT)_type, 1, &_buffer);
+			break;
+		case eShaderStage::HS:
+			mContext->HSSetConstantBuffers((UINT)_type, 1, &_buffer);
+			break;
+		case eShaderStage::DS:
+			mContext->DSSetConstantBuffers((UINT)_type, 1, &_buffer);
+			break;
+		case eShaderStage::GS:
+			mContext->GSSetConstantBuffers((UINT)_type, 1, &_buffer);
+			break;
+		case eShaderStage::PS:
+			mContext->PSSetConstantBuffers((UINT)_type, 1, &_buffer);
+		case eShaderStage::CS:
+			mContext->CSSetConstantBuffers((UINT)_type, 1, &_buffer);
+			break;
+		case eShaderStage::End:
+			break;
+		}
+	}
+	void CGraphicDevice_Dx11::BindsConstantBuffer(eShaderStage _stage, eCBType _type, ID3D11Buffer* _buffer)
+	{
+		mContext->VSSetConstantBuffers((UINT)_type, 1, &_buffer);
+		mContext->HSSetConstantBuffers((UINT)_type, 1, &_buffer);
+		mContext->DSSetConstantBuffers((UINT)_type, 1, &_buffer);
+		mContext->GSSetConstantBuffers((UINT)_type, 1, &_buffer);
+		mContext->PSSetConstantBuffers((UINT)_type, 1, &_buffer);
+		mContext->CSSetConstantBuffers((UINT)_type, 1, &_buffer);
+	}
+	bool CGraphicDevice_Dx11::CompileFromFile(const std::wstring& fileName, const std::string& funcName, const std::string& version, ID3DBlob** ppCode)
+	{
+		ID3DBlob* errorBlob = nullptr;
+		D3DCompileFromFile(fileName.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, funcName.c_str(), version.c_str(), 0, 0, ppCode, &errorBlob);
+
+		if (errorBlob)
+		{
+			OutputDebugStringA((char*)(errorBlob->GetBufferPointer()));
+			errorBlob->Release();
+			errorBlob = nullptr;
+		}
+
+		return false;
+	}
+	
+
+	void CGraphicDevice_Dx11::BindVertexShader(ID3D11VertexShader* pVertexShader)
+	{
+		mContext->VSSetShader(pVertexShader, 0, 0);
+	}
+	void CGraphicDevice_Dx11::BindPixelShader(ID3D11PixelShader* pPixelShader)
+	{
+		mContext->PSSetShader(pPixelShader, 0, 0);
+	}
+
+	void CGraphicDevice_Dx11::Draw()
+	{
+		// rendertarget clear
+		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
+		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
+
+		// viewport update
+		HWND hWnd = application.GetHwnd();
+		RECT winRect = {};
+		GetClientRect(hWnd, &winRect);
+		mViewPort = {
+			0.0f, 0.0f
+			, (float)(winRect.right - winRect.left)
+			, (float)(winRect.bottom - winRect.top)
+			, 0.0f, 1.0f
+		};
+
+		BindViewPort(&mViewPort);
+
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+
+		render::mesh->BindBuffer();
+
+
+		// 정점 데이터 정보 저장
+		/*UINT vertexsize = sizeof(render::Vertex);
+		UINT offset = 0;*/
+
+		//mContext->IASetVertexBuffers(0, 1, &render::triangleBuffer, &vertexsize, &offset);
+		//mContext->IASetIndexBuffer(render::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+		mContext->IASetInputLayout(render::shader->GetInputLayout());
+		//mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		// Bind VS, PS
+		render::shader->Binds();
+		//mContext->VSSetShader(render::triangleVSShader, 0, 0);
+		//mContext->PSSetShader(render::trianglePSShader, 0, 0);
+
+		// Draw Render target
+		mContext->DrawIndexed(render::mesh->GetIndexCount(), 0, 0);
+		mSwapChain->Present(0, 0);
 	}
 }
 

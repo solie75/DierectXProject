@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Editor_Window.h"
 #include "CApplication.h"
+#include "CRenderer.h"
 
 sh::CApplication application;
 
@@ -64,7 +65,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             application.Run();
         }
     }
-
+    render::Release();
     return (int) msg.wParam;
 }
 

@@ -1,169 +1,147 @@
 #include "CRenderer.h"
+#include "CInput.h"
 
-namespace sh::render
+namespace render
 {
 	//Vertex Vertexes1[3] = {};
-	//Vertex Vertexes2[4] = {};
-	Vertex vCircle[360] = {};
+	Vertex vertexes[4] = {};
+	//Vertex vCircle[360] = {};
 
-	ID3D11Buffer* triangleBuffer = nullptr;
+	sh::CMesh* mesh = nullptr;
+	sh::CShader* shader = nullptr;
 
-	ID3DBlob* errorBlob = nullptr;
+	//ID3D11Buffer* triangleBuffer = nullptr;
 
-	ID3DBlob* triangleVSBlob = nullptr;
+	//ID3DBlob* errorBlob = nullptr;
 
-	ID3D11VertexShader* triangleVSShader = nullptr;
+	//ID3DBlob* triangleVSBlob = nullptr;
 
-	ID3DBlob* trianglePSBlob = nullptr;
+	//ID3D11VertexShader* triangleVSShader = nullptr;
 
-	ID3D11PixelShader* trianglePSShader = nullptr;
+	//ID3DBlob* trianglePSBlob = nullptr;
 
-	ID3D11InputLayout* triangleLayout = nullptr;
+	//ID3D11PixelShader* trianglePSShader = nullptr;
 
-	ID3D11Buffer* indexBuffer = nullptr;
+	//ID3D11InputLayout* triangleLayout = nullptr;
 
-	//UINT indices[6] = {};
-	UINT circleIndex[1080] = {}; // 1-0-2, 1-0-3, 2-0-4, 3-0-5, ..., 358-0-360, 359-0-1
+	//ID3D11Buffer* indexBuffer = nullptr;
+
+	sh::graphics::CConstantBuffer* constantBuffer = nullptr;
+
+	//UINT circleIndex[1080] = {}; // 1-0-2, 1-0-3, 2-0-4, 3-0-5, ..., 358-0-360, 359-0-1
 
 	void SetupState()
 	{
+		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
 
+		arrLayout[0].AlignedByteOffset = 0;
+		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+		arrLayout[0].InputSlot = 0;
+		arrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		arrLayout[0].SemanticName = "POSITION";
+		arrLayout[0].SemanticIndex = 0;
+
+		arrLayout[1].AlignedByteOffset = 12;
+		arrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		arrLayout[1].InputSlot = 0;
+		arrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		arrLayout[1].SemanticName = "COLOR";
+		arrLayout[1].SemanticIndex = 0;
+
+		sh::graphics::GetDevice()->CreateInputLayout(arrLayout, 2, shader->GetVSCode(), shader->GetInputLayoutAddressof());
 	}
 
 	void LoadBuffer()
 	{
-		//D3D11_BUFFER_DESC triangleDesc = {};
-		//triangleDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		//triangleDesc.ByteWidth = sizeof(Vertex) * 3;
-		//triangleDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		//triangleDesc.CPUAccessFlags = D3D10_CPU_ACCESS_FLAG::D3D10_CPU_ACCESS_WRITE;
+		// vertexBuffer
+		mesh = new sh::CMesh();
+		mesh->CreateVertexBuffer(vertexes, 4);
 
-		//D3D11_BUFFER_DESC SquareDesc = {};
-		//SquareDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		//SquareDesc.ByteWidth = sizeof(Vertex) * 4;
-		//SquareDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		//SquareDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+		std::vector<UINT> indexes = {};
 
-		D3D11_BUFFER_DESC circleDesc = {};
-		circleDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		circleDesc.ByteWidth = sizeof(Vertex) * 360;
-		circleDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		circleDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+		indexes.push_back(0);
+		indexes.push_back(1);
+		indexes.push_back(2);
+		indexes.push_back(0);
+		indexes.push_back(2);
+		indexes.push_back(3);
 
-		//D3D11_SUBRESOURCE_DATA SqaureData = {};
-		//SqaureData.pSysMem = Vertexes2;
-		//sh::graphics::GetDevice()->CreateBuffer(&triangleBuffer, &SquareDesc, &SqaureData);
+		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
-		D3D11_SUBRESOURCE_DATA circleData = {};
-		circleData.pSysMem = vCircle;
-		sh::graphics::GetDevice()->CreateBuffer(&triangleBuffer, &circleDesc, &circleData);
+		//Constant Buffer
+		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
+		constantBuffer->Create(sizeof(Vector4));
 
-		circleIndex[0] = 1;
-		circleIndex[1] = 0;
-		circleIndex[2] = 2;
-
-		for (int i = 1; i < 359; i++)
-		{
-			circleIndex[i * 3] = i;
-			circleIndex[(i * 3) + 1] = 0;
-			circleIndex[(i * 3) + 2] = i + 2;
-		}
-
-		circleIndex[1077] = 359;
-		circleIndex[1078] = 0;
-		circleIndex[1079] = 1;
-
-		// index buffer
-		D3D11_BUFFER_DESC indexDesc = {};
-		indexDesc.Usage = D3D11_USAGE_DEFAULT;
-		indexDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER;
-		//indexDesc.ByteWidth = sizeof(unsigned int) * 6;
-		indexDesc.ByteWidth = sizeof(UINT) * 1080;
-
-		D3D11_SUBRESOURCE_DATA indexData = {};
-		//indexData.pSysMem = indices;
-		indexData.pSysMem = circleIndex;
-		(sh::graphics::GetDevice()->CreateBuffer(&indexBuffer , &indexDesc, &indexData));
+		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
+		constantBuffer->SetData(&pos);
+		constantBuffer->Bind(eShaderStage::VS);
 	}
 
 	void LoadShader()
 	{
-		sh::graphics::GetDevice()->CreateShader();
+		shader = new sh::CShader();
+		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
+		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 	}
 
 	void Initialize()
 	{
-		double pi = 3.1215926;
-		double ra = 0.5f;
-		double degree = pi / 180;
-		//Vertexes2[0].pos = Vector3(-0.5f, 0.5f, 0.5f);
-		//Vertexes2[0].color = Vector4(1.f, 0.f, 0.f, 1.f);
+		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
+		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
-		//Vertexes2[1].pos = Vector3(0.5f, 0.5f, 0.5f);
-		//Vertexes2[1].color = Vector4(0.f, 1.f, 0.f, 1.f);
+		vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
+		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
-		//Vertexes2[2].pos = Vector3(0.5f, -0.5f, 0.5f);
-		//Vertexes2[2].color = Vector4(0.f, 0.f, 1.f, 1.f);
+		vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
+		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
 
-		//Vertexes2[3].pos = Vector3(-0.5f, -0.5f, 0.5f);
-		//Vertexes2[3].color = Vector4(0.f, 0.f, 0.f, 1.f);
+		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		// 1사분면
-		vCircle[0].pos = Vector3(0.f, 0.f, 0.0f);
-		vCircle[0].color = Vector4(0.1f, 0.f, 0.f, 1.f);
-
-		for (int i = 1; i < 90; i++)
-		{
-			vCircle[i].pos = Vector3((float)cos(i * degree) * ra, (float)sin(i * degree)* ra, 0.0f);
-			vCircle[i].color = Vector4(0.1f*i, 0.f, 0.f, 1.f);
-		}
-		// 2사분면
-		for (int i = 0; i < 90; i++)
-		{
-			vCircle[i+90].pos = Vector3(-(float)cos((90 - i) * degree) * ra, (float)sin((90-i) * degree) * ra, 0.0f);
-			vCircle[i+90].color = Vector4(0.f, 0.1f * i, 0.f, 1.f);
-		}
-		// 3사분면
-		for (int i = 0; i < 90; i++)
-		{
-			vCircle[i+180].pos = Vector3(-(float)cos(i * degree) * ra, -((float)sin(i * degree) * ra), 0.0f);
-			vCircle[i+180].color = Vector4(0.f, 0.f, 0.1f * i, 1.f);
-		}
-		// 4사분면
-		for (int i = 0; i < 90; i++)
-		{
-			vCircle[i+270].pos = Vector3((float)cos((90 - i) * degree) * ra, -((float)sin((90-i) * degree) * ra), 0.0f);
-			vCircle[i+270].color = Vector4(0.1f * i, 0.f, 0.f, 1.f);
-		}
-
-		//// 1사분면
-		//for (int i = 0; i < 90; i++)
-		//{
-		//	vCircle[i].pos = Vector3((ra * ((double)(90 - i) / (double)90)), (ra * ((double)(i) / (double)90)), 0.0f);
-		//	vCircle[i].color = Vector4(0.1f * i, 0.f, 0.f, 1.f);
-		//}
-		//// 2사분면
-		//for (int i = 0; i < 90; i++)
-		//{
-		//	vCircle[i + 90].pos = Vector3(-(ra * ((double)(i) / (double)90)), (ra * ((double)(90 - i) / (double)90)), 0.0f);
-		//	vCircle[i + 90].color = Vector4(0.1f * i, 0.f, 0.f, 1.f);
-		//}
-		//// 3사분면
-		//for (int i = 0; i < 90; i++)
-		//{
-		//	vCircle[i + 180].pos = Vector3(-(ra * ((double)(90 - i) / (double)90)), -(ra * ((double)(i) / (double)90)), 0.0f);
-		//	vCircle[i + 180].color = Vector4(0.1f * i, 0.f, 0.f, 1.f);
-		//}
-		//// 4사분면
-		//for (int i = 0; i < 90; i++)
-		//{
-		//	vCircle[i + 270].pos = Vector3((ra * ((double)(i) / (double)90)), -(ra * ((double)(90 - i) / (double)90)), 0.0f);
-		//	vCircle[i + 270].color = Vector4(0.1f * i, 0.f, 0.f, 1.f);
-		//} // 마름모가 된다... 같은 비율료 x 와 y 가 달라지면 직선이 되지...
-
-		SetupState();
 		LoadBuffer();
 		LoadShader();
+		SetupState();
+	}
+
+	void Update()
+	{
+		/*float mSpeed = 0.01f;
+
+		if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed)
+		{
+			vertexes[0].pos.x += mSpeed;
+			vertexes[1].pos.x += mSpeed;
+			vertexes[2].pos.x += mSpeed;
+			vertexes[3].pos.x += mSpeed;
+		}
+		if (sh::CInput::GetKeyState(sh::eKeyCode::LEFT) == sh::eKeyState::Pressed)
+		{
+			vertexes[0].pos.x -= mSpeed;
+			vertexes[1].pos.x -= mSpeed;
+			vertexes[2].pos.x -= mSpeed;
+			vertexes[3].pos.x -= mSpeed;
+		}
+		if (sh::CInput::GetKeyState(sh::eKeyCode::UP) == sh::eKeyState::Pressed)
+		{
+			vertexes[0].pos.y += mSpeed;
+			vertexes[1].pos.y += mSpeed;
+			vertexes[2].pos.y += mSpeed;
+			vertexes[3].pos.y += mSpeed;
+		}
+		if (sh::CInput::GetKeyState(sh::eKeyCode::DOWN) == sh::eKeyState::Pressed)
+		{
+			vertexes[0].pos.y -= mSpeed;
+			vertexes[1].pos.y -= mSpeed;
+			vertexes[2].pos.y -= mSpeed;
+			vertexes[3].pos.y -= mSpeed;
+		}
+		LoadBuffer();*/
+	}
+	void Release()
+	{
+		delete mesh;
+		delete shader;
+		delete constantBuffer;
 	}
 }
 

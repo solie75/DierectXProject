@@ -4,6 +4,7 @@
 namespace sh
 {
 	using namespace sh::math;
+
 	enum class eKeyCode
 	{
 		Q, W, E, R, T, Y, U, I, O, P,
@@ -41,7 +42,7 @@ namespace sh
 		static void Update();
 		static void Render(HDC hdc);
 		
-		inline static eKeyState GetKeyState(eKeyState keyCode)
+		inline static eKeyState GetKeyState(eKeyCode keyCode)
 		{
 			return mKeys[(UINT)keyCode].state;
 		}

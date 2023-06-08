@@ -63,6 +63,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CRenderer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp">
@@ -87,6 +92,11 @@
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CRenderer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CConstantBuffer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>

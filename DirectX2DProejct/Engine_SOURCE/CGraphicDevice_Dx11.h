@@ -41,7 +41,9 @@ namespace sh::graphics
 		void BindVertexShader(ID3D11VertexShader* pVertexShader);
 		void BindPixelShader(ID3D11PixelShader* pPixelShader);
 
+		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation);
 		void Draw();
+		void Present();
 
 	private:
 		// 실제 그래픽카드 하드웨어 객체

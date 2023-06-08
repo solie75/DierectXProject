@@ -313,7 +313,7 @@ namespace sh::graphics
 
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
-		render::mesh->BindBuffer();
+		//render::mesh->BindBuffer();
 
 
 		// 정점 데이터 정보 저장
@@ -322,17 +322,25 @@ namespace sh::graphics
 
 		//mContext->IASetVertexBuffers(0, 1, &render::triangleBuffer, &vertexsize, &offset);
 		//mContext->IASetIndexBuffer(render::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-		mContext->IASetInputLayout(render::shader->GetInputLayout());
+		//mContext->IASetInputLayout(render::shader->GetInputLayout());
 		//mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		// Bind VS, PS
-		render::shader->Binds();
+		//render::shader->Binds();
 		//mContext->VSSetShader(render::triangleVSShader, 0, 0);
 		//mContext->PSSetShader(render::trianglePSShader, 0, 0);
 
 		// Draw Render target
-		mContext->DrawIndexed(render::mesh->GetIndexCount(), 0, 0);
+		
+		//mSwapChain->Present(0, 0);
+	}
+	void CGraphicDevice_Dx11::Present()
+	{
 		mSwapChain->Present(0, 0);
+	}
+	void CGraphicDevice_Dx11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation)
+	{
+		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
 	}
 }
 

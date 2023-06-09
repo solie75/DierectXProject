@@ -4,11 +4,11 @@
 
 namespace sh
 {
-	class Scene : public CEntity
+	class CScene : public CEntity
 	{
 	public:
-		Scene();
-		virtual ~Scene();
+		CScene();
+		virtual ~CScene();
 
 		virtual void Initialize();
 		virtual void Update();
@@ -17,5 +17,8 @@ namespace sh
 
 	private:
 		std::vector<CGameObject*> mGameObjects;
+
+	public:
+		void AddGameObject(CGameObject* _pGameObject);
 	};
 }

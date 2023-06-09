@@ -14,22 +14,22 @@ namespace render
 		Vector4 color;
 	};
 
-	extern sh::CMesh* mesh;
+	struct Transform
+	{
+		Vector4 pos;
+		Vector4 scale;
+		Vector4 color;
+	};
+
+	extern Transform transform;
+	extern sh::CMesh* cellMesh;
+	extern sh::CMesh* wallMesh;
 	extern sh::CShader* shader;
 
-	extern Vertex vertexes[];
-	//extern Vertex Vertexes2[];
-	//extern ID3D11Buffer* triangleBuffer;
-	//extern ID3D11Buffer* indexBuffer;
-	//extern ID3D11Buffer* constantBuffer;
-	//extern ID3DBlob* errorBlob;
-	//extern ID3DBlob* triangleVSBlob;
-	//extern ID3D11VertexShader* triangleVSShader;
-	//extern ID3DBlob* trianglePSBlob;
-	//extern ID3D11PixelShader* trianglePSShader;
-	//extern ID3D11InputLayout* triangleLayout;
-	//extern UINT indices[];
-	//extern UINT circleIndex[];
+	extern Vertex cellVertexes[];
+	extern Vertex wallVertexes[];
+
+	extern sh::graphics::CConstantBuffer* constantBuffer;
 
 	void Initialize();
 	void Update();

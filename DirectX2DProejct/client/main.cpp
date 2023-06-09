@@ -61,7 +61,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-            // 여기서 게임 로직이 돌아가야한다.
             application.Run();
         }
     }
@@ -69,13 +68,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     return (int) msg.wParam;
 }
 
-
-
-//
-//  함수: MyRegisterClass()
-//
-//  용도: 창 클래스를 등록합니다.
-//
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;

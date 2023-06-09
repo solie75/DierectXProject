@@ -1,5 +1,6 @@
 #pragma once
 #include "CEntity.h"
+#include "CRenderer.h"
 
 namespace sh
 {
@@ -14,14 +15,17 @@ namespace sh
 	{
 	private:
 		eState mState;
+
 	public:
 		CGameObject();
 		virtual ~CGameObject();
 
 		virtual void Initialize();
-		virtual void Updata();
+		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
+
+		render::Transform transform;
 
 	};
 }

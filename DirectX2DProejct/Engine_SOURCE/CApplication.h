@@ -4,6 +4,7 @@
 #include "CInput.h"
 #include "CTime.h"
 #include "CRenderer.h"
+#include "CScene.h"
 
 namespace sh
 {
@@ -33,7 +34,7 @@ namespace sh
 		UINT mWidth;
 		UINT mHeight;
 
-
+		CScene* mScene;
 	};
 }
 

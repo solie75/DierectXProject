@@ -26,19 +26,22 @@ namespace sh
 		CTime::Initiailize();
 		CInput::Initialize();
 
-		render::Initialize(); // 왜 renderer 는 class 가 아니지?
+		render::Initialize();
 		
+		mScene = new CScene;
+		mScene->Initialize();
 	}
 
 	void CApplication::Update()
 	{
 		CTime::Update();
 		CInput::Update();
+
+		mScene->Update();
 	}
 
 	void CApplication::LateUpdate()
 	{
-		render::Update();
 	}
 
 	void CApplication::Render()
@@ -46,6 +49,8 @@ namespace sh
 		CTime::Render();
 
 		graphicDevice->Draw();
+		mScene->Render();
+		graphicDevice->Present();
 	}
 
 	void CApplication::SetWindow(HWND hwnd, UINT width, UINT height)

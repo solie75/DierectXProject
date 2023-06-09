@@ -3,32 +3,15 @@
 
 namespace render
 {
-	//Vertex Vertexes1[3] = {};
-	Vertex vertexes[4] = {};
-	//Vertex vCircle[360] = {};
+	Vertex cellVertexes[360] = {};
+	Vertex wallVertexes[4] = {};
 
-	sh::CMesh* mesh = nullptr;
+	sh::CMesh* cellMesh = nullptr;
+	sh::CMesh* wallMesh = nullptr;
+
 	sh::CShader* shader = nullptr;
 
-	//ID3D11Buffer* triangleBuffer = nullptr;
-
-	//ID3DBlob* errorBlob = nullptr;
-
-	//ID3DBlob* triangleVSBlob = nullptr;
-
-	//ID3D11VertexShader* triangleVSShader = nullptr;
-
-	//ID3DBlob* trianglePSBlob = nullptr;
-
-	//ID3D11PixelShader* trianglePSShader = nullptr;
-
-	//ID3D11InputLayout* triangleLayout = nullptr;
-
-	//ID3D11Buffer* indexBuffer = nullptr;
-
 	sh::graphics::CConstantBuffer* constantBuffer = nullptr;
-
-	//UINT circleIndex[1080] = {}; // 1-0-2, 1-0-3, 2-0-4, 3-0-5, ..., 358-0-360, 359-0-1
 
 	void SetupState()
 	{
@@ -53,93 +36,42 @@ namespace render
 
 	void LoadBuffer()
 	{
-		// vertexBuffer
-		mesh = new sh::CMesh();
-		mesh->CreateVertexBuffer(vertexes, 4);
+		cellMesh = new sh::CMesh();
+		
+		//wallMesh = new sh::CMesh();
 
-		std::vector<UINT> indexes = {};
+		//wallMesh->CreateVertexBuffer(wallVertexes, 4);
+		//std::vector<UINT> wallMeshIndexes = {};
+		//wallMesh->CreateIndexBuffer(wallMeshIndexes.data(), wallMeshIndexes.size());
 
-		indexes.push_back(0);
-		indexes.push_back(1);
-		indexes.push_back(2);
-		indexes.push_back(0);
-		indexes.push_back(2);
-		indexes.push_back(3);
-
-		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
-
-		//Constant Buffer
 		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Vector4));
-
-		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
-		constantBuffer->SetData(&pos);
+		constantBuffer->Create(sizeof(Transform));
+		Transform trans = Transform{ Vector4(0.0f, 0.0f, 0.0f, 1.f) , Vector4(1.0f, 0.f, 0.f, 0.f), Vector4(0.0f, 0.0f, 0.0f, 1.f) };
+		constantBuffer->SetData(&trans);
 		constantBuffer->Bind(eShaderStage::VS);
 	}
 
 	void LoadShader()
 	{
 		shader = new sh::CShader();
-		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
-		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
+		shader->Create(eShaderStage::VS, L"VS.hlsl", "main");
+		shader->Create(eShaderStage::PS, L"PS.hlsl", "main");
 	}
 
 	void Initialize()
 	{
-		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
-		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-
-		vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
-		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
-
-		vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
-		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-
-		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
-		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-
-		LoadBuffer();
 		LoadShader();
+		LoadBuffer();
 		SetupState();
 	}
 
 	void Update()
 	{
-		/*float mSpeed = 0.01f;
-
-		if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed)
-		{
-			vertexes[0].pos.x += mSpeed;
-			vertexes[1].pos.x += mSpeed;
-			vertexes[2].pos.x += mSpeed;
-			vertexes[3].pos.x += mSpeed;
-		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::LEFT) == sh::eKeyState::Pressed)
-		{
-			vertexes[0].pos.x -= mSpeed;
-			vertexes[1].pos.x -= mSpeed;
-			vertexes[2].pos.x -= mSpeed;
-			vertexes[3].pos.x -= mSpeed;
-		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::UP) == sh::eKeyState::Pressed)
-		{
-			vertexes[0].pos.y += mSpeed;
-			vertexes[1].pos.y += mSpeed;
-			vertexes[2].pos.y += mSpeed;
-			vertexes[3].pos.y += mSpeed;
-		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::DOWN) == sh::eKeyState::Pressed)
-		{
-			vertexes[0].pos.y -= mSpeed;
-			vertexes[1].pos.y -= mSpeed;
-			vertexes[2].pos.y -= mSpeed;
-			vertexes[3].pos.y -= mSpeed;
-		}
-		LoadBuffer();*/
 	}
 	void Release()
 	{
-		delete mesh;
+		delete cellMesh;
+		delete wallMesh;
 		delete shader;
 		delete constantBuffer;
 	}

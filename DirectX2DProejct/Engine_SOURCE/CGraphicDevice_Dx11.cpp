@@ -8,7 +8,6 @@ namespace sh::graphics
 {
 	CGraphicDevice_Dx11::CGraphicDevice_Dx11()
 	{
-		// Device, context 생ㅅ어
 		HWND hWnd = application.GetHwnd();
 		UINT deviceFlag = D3D11_CREATE_DEVICE_DEBUG;
 		D3D_FEATURE_LEVEL featureLevel = (D3D_FEATURE_LEVEL)0;
@@ -19,7 +18,6 @@ namespace sh::graphics
 			, mDevice.GetAddressOf(), &featureLevel
 			, mContext.GetAddressOf());
 
-		//  SwapChain
 		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
 		swapChainDesc.BufferCount = 2;
 		swapChainDesc.BufferDesc.Width = application.GetWidth();
@@ -30,13 +28,11 @@ namespace sh::graphics
 			return;
 		}
 
-		// SwapChian 으로 부터 Rendertarget 을 가져온다.
 		if (FAILED(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)mRenderTarget.GetAddressOf())))
 		{
 			return;
 		}
 
-		// Rendertarget view 생성
 		mDevice->CreateRenderTargetView((ID3D11Resource*)mRenderTarget.Get(), nullptr, mRenderTargetView.GetAddressOf());
 
 		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
@@ -63,11 +59,9 @@ namespace sh::graphics
 			return;
 		}
 
-		// 화면 생성
 		RECT winRect = {};
 		GetClientRect(hWnd, &winRect);
 		
-		//mViewPort = {}
 		mViewPort =
 		{
 			0.0f, 0.0f
@@ -312,27 +306,6 @@ namespace sh::graphics
 		BindViewPort(&mViewPort);
 
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
-
-		//render::mesh->BindBuffer();
-
-
-		// 정점 데이터 정보 저장
-		/*UINT vertexsize = sizeof(render::Vertex);
-		UINT offset = 0;*/
-
-		//mContext->IASetVertexBuffers(0, 1, &render::triangleBuffer, &vertexsize, &offset);
-		//mContext->IASetIndexBuffer(render::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-		//mContext->IASetInputLayout(render::shader->GetInputLayout());
-		//mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-		// Bind VS, PS
-		//render::shader->Binds();
-		//mContext->VSSetShader(render::triangleVSShader, 0, 0);
-		//mContext->PSSetShader(render::trianglePSShader, 0, 0);
-
-		// Draw Render target
-		
-		//mSwapChain->Present(0, 0);
 	}
 	void CGraphicDevice_Dx11::Present()
 	{

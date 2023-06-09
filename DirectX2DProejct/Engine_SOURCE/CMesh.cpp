@@ -24,7 +24,6 @@ namespace sh
 
 	bool CMesh::CreateVertexBuffer(void* _data, UINT _count)
 	{
-		mIndexCount = _count;
 		mVBDesc.ByteWidth = sizeof(render::Vertex) * _count;
 		mVBDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
 		mVBDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;

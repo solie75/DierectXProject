@@ -48,8 +48,6 @@ namespace render
 
 		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
 		constantBuffer->Create(sizeof(Transform));
-		Transform trans = Transform{ Vector4(0.0f, 0.0f, 0.0f, 1.f) , Vector4(1.0f, 0.f, 0.f, 0.f), Vector4(0.0f, 0.0f, 0.0f, 1.f) };
-		constantBuffer->SetData(&trans);
 		constantBuffer->Bind(eShaderStage::VS);
 	}
 

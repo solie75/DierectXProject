@@ -8,13 +8,10 @@ namespace sh
 {
 	CPlayer::CPlayer()
 		: playerRadius(0.5f)
-		, playerSpeed(0.1f)
+		, playerSpeed(0.5f)
 		, playerPos(0.f, 0.f, 0.f)
 		, playerColor(1.0f, 0.f, 0.f, 1.f)
 	{
-		/*transform.pos = Vector4(playerPos.x, playerPos.y, 0.f, 1.0f);
-		transform.scale = Vector4(playerRadius, 0.0f, 0.0f, 0.0f);
-		transform.color = (playerColor);*/
 	}
 	CPlayer::~CPlayer()
 	{

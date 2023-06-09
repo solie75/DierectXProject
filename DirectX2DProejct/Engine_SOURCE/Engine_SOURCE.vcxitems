@@ -18,6 +18,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CCell.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CCellFeed.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CEngine.h" />
@@ -44,6 +45,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CCell.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CCellFeed.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp" />

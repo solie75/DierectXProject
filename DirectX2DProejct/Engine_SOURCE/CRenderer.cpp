@@ -13,6 +13,8 @@ namespace render
 
 	sh::graphics::CConstantBuffer* constantBuffer = nullptr;
 
+	Transform transform = {};
+
 	void SetupState()
 	{
 		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};

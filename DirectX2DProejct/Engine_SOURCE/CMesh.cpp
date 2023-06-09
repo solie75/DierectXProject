@@ -1,4 +1,5 @@
 #include "CMesh.h"
+#include "CGraphicDevice_Dx11.h"
 #include "CREnderer.h"
 
 namespace sh

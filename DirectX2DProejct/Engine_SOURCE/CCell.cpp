@@ -11,18 +11,18 @@ namespace sh
 	CCell::~CCell()
 	{
 	}
-	void CCell::SetCellPosition(Vector3 _v3)
+	/*void CCell::SetCellPosition(Vector3 _v3)
 	{
 		position = _v3;
-	}
+	}*/
 	void CCell::Initialize()
 	{
-		render::cellVertexes[0].pos = Vector3(0.0f, 0.0f, 0.0f);
+		render::cellVertexes[0].pos = position;
 		render::cellVertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		for (int i = 1; i < 360; i++)
 		{
-			render::cellVertexes[i].pos = Vector3(cos(i * degree)* 0.5, sin(i * degree)*0.5, 0.0f);
+			render::cellVertexes[i].pos = Vector3(cos(i * degree)* 0.1, sin(i * degree)*0.1, 0.0f);
 			render::cellVertexes[i].color = Vector4(1.f, 0.0f, 0.0f, 1.0f);
 		}
 		render::cellMesh->CreateVertexBuffer(render::cellVertexes, 361);

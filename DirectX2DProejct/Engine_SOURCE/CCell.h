@@ -15,7 +15,7 @@ namespace sh
 		CCell();
 		virtual ~CCell();
 
-		void SetCellPosition(sh::math::Vector3 _v3);
+		//void SetCellPosition(sh::math::Vector3 _v3);
 
 		virtual void Initialize();
 		virtual void Update();

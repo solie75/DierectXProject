@@ -10,7 +10,7 @@ namespace sh
 	{
 	private:
 		ID3D11InputLayout* mInputLayout;
-		D3D11_PRIMITIVE_TOPOLOGY mTopology;
+		//D3D11_PRIMITIVE_TOPOLOGY mTopology;
 
 		Microsoft::WRL::ComPtr<ID3DBlob> mVSBlob;
 		Microsoft::WRL::ComPtr<ID3DBlob> mHSBlob;
@@ -29,7 +29,7 @@ namespace sh
 
 		virtual HRESULT Load(const std::wstring& path) override;
 		bool Create(const eShaderStage _stage, const std::wstring& fileName, const std::string& funcName);
-		void Binds();
+		void Binds(D3D11_PRIMITIVE_TOPOLOGY mTopology);
 
 		ID3DBlob* GetVSCode()
 		{

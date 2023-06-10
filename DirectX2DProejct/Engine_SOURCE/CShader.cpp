@@ -3,7 +3,7 @@ namespace sh
 {
 	CShader::CShader()
 		: mInputLayout(nullptr)
-		, mTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+		//, mTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	{
 	}
 	CShader::~CShader()
@@ -39,7 +39,7 @@ namespace sh
 
 		return true;
 	}
-	void CShader::Binds()
+	void CShader::Binds(D3D11_PRIMITIVE_TOPOLOGY mTopology)
 	{
 		GetDevice()->BindPrimitiveTopology(mTopology);
 		GetDevice()->BindInputLayout(mInputLayout);

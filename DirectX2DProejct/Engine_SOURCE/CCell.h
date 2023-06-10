@@ -7,7 +7,7 @@ namespace sh
 		public CGameObject
 	{
 	private:
-		double degree;
+		float degree;
 		double radius;
 		sh::math::Vector3 position;
 

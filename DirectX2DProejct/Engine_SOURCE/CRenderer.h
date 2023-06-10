@@ -21,7 +21,7 @@ namespace render
 		Vector4 color;
 	};
 
-	extern Transform transform;
+	//extern Transform transform;
 	extern sh::CMesh* cellMesh;
 	extern sh::CMesh* wallMesh;
 	extern sh::CShader* shader;
@@ -30,6 +30,7 @@ namespace render
 	extern Vertex wallVertexes[];
 
 	extern sh::graphics::CConstantBuffer* constantBuffer;
+	extern sh::graphics::CConstantBuffer* FixedPosConstantBuffer;
 
 	void Initialize();
 	void Update();

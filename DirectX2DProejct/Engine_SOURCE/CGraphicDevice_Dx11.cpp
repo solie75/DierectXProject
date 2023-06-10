@@ -163,10 +163,10 @@ namespace sh::graphics
 
 		return true;
 	}
-	bool CGraphicDevice_Dx11::CreateShader()
+	/*bool CGraphicDevice_Dx11::CreateShader()
 	{
 		return true;
-	}
+	}*/
 
 	bool CGraphicDevice_Dx11::CreateVertexShader(const void* pShaderByteCode, SIZE_T BytecodeLength, ID3D11VertexShader** ppVertexShader)
 	{

@@ -1,11 +1,11 @@
 #include "CScene.h"
 #include "CRenderer.h"
-#include "CWall.h"
 #include "CPlayer.h"
 
 namespace sh
 {
 	CScene::CScene()
+		: wall(nullptr)
 	{
 	}
 	CScene::~CScene()
@@ -22,6 +22,7 @@ namespace sh
 		{
 			mGameObjects[i]->Initialize();
 		}
+		
 	}
 
 	void CScene::Update()

@@ -3,7 +3,7 @@
 
 namespace render
 {
-	Vertex cellVertexes[360] = {};
+	Vertex cellVertexes[362] = {};
 	Vertex wallVertexes[4] = {};
 
 	sh::CMesh* cellMesh = nullptr;
@@ -12,6 +12,7 @@ namespace render
 	sh::CShader* shader = nullptr;
 
 	sh::graphics::CConstantBuffer* constantBuffer = nullptr;
+	sh::graphics::CConstantBuffer* FixedPosConstantBuffer = nullptr;
 
 	Transform transform = {};
 
@@ -39,16 +40,15 @@ namespace render
 	void LoadBuffer()
 	{
 		cellMesh = new sh::CMesh();
-		
-		//wallMesh = new sh::CMesh();
-
-		//wallMesh->CreateVertexBuffer(wallVertexes, 4);
-		//std::vector<UINT> wallMeshIndexes = {};
-		//wallMesh->CreateIndexBuffer(wallMeshIndexes.data(), wallMeshIndexes.size());
+		wallMesh = new sh::CMesh();
 
 		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
 		constantBuffer->Create(sizeof(Transform));
 		constantBuffer->Bind(eShaderStage::VS);
+
+		/*FixedPosConstantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
+		FixedPosConstantBuffer->Create(sizeof(Transform));
+		FixedPosConstantBuffer->Bind(eShaderStage::VS);*/
 	}
 
 	void LoadShader()

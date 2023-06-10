@@ -7,11 +7,15 @@
 namespace sh
 {
 	CPlayer::CPlayer()
-		: playerRadius(0.5f)
-		, playerSpeed(0.5f)
-		, playerPos(0.f, 0.f, 0.f)
-		, playerColor(1.0f, 0.f, 0.f, 1.f)
+		: 
+		//playerRadius(0.5f)
+		playerSpeed(0.5f)
+		//, playerPos(0.f, 0.f, 0.f)
+		//, playerColor(1.0f, 0.f, 0.f, 1.f)
 	{
+		transform.pos = Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+		transform.color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		transform.scale = Vector4(0.8f, 0.0f, 0.0f, 0.0f);
 	}
 	CPlayer::~CPlayer()
 	{
@@ -22,7 +26,7 @@ namespace sh
 	}
 	void CPlayer::Update()
 	{
-		if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed)
+		/*if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed)
 		{	
 			playerPos.x += (sh::CTime::DeltaTime()* playerSpeed);
 		}
@@ -37,19 +41,33 @@ namespace sh
 		if (sh::CInput::GetKeyState(sh::eKeyCode::DOWN) == sh::eKeyState::Pressed)
 		{	
 			playerPos.y -= (sh::CTime::DeltaTime()* playerSpeed);
+		}*/
+		if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed)
+		{
+			transform.pos.x += (sh::CTime::DeltaTime() * playerSpeed);
 		}
-		//SetCellPosition(playerPos);
-		render::transform.pos = Vector4(playerPos.x, playerPos.y, 0.f, 1.0f);
-		render::transform.scale = Vector4(playerRadius, 0.0f, 0.0f, 0.0f);
-		render::transform.color = (playerColor);
+		if (sh::CInput::GetKeyState(sh::eKeyCode::LEFT) == sh::eKeyState::Pressed)
+		{
+			transform.pos.x -= (sh::CTime::DeltaTime() * playerSpeed);
+		}
+		if (sh::CInput::GetKeyState(sh::eKeyCode::UP) == sh::eKeyState::Pressed)
+		{
+			transform.pos.y += (sh::CTime::DeltaTime() * playerSpeed);
+		}
+		if (sh::CInput::GetKeyState(sh::eKeyCode::DOWN) == sh::eKeyState::Pressed)
+		{
+			transform.pos.y -= (sh::CTime::DeltaTime() * playerSpeed);
+		}                              
 	}
 	void CPlayer::LateUpdate()
 	{
 	}
 	void CPlayer::Render()
 	{
-		render::constantBuffer->SetData(&(render::transform));
+		render::constantBuffer->SetData(&(transform));
 		CCell::Render();
+		render::shader->Binds(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+		//GetDevice()->BindPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 		CGameObject::Render();
 	}
 }

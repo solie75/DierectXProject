@@ -12,6 +12,7 @@ namespace sh
 
 	CApplication::~CApplication()
 	{
+		graphicDevice.release();
 	}
 
 	void CApplication::Run()

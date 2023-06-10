@@ -35,7 +35,7 @@ namespace sh
 		
 		//render::wallMesh->BindBuffer();
 		
-		render::shader->Binds();
+		//render::shader->Binds();
 		graphics::GetDevice()->DrawIndexed(render::cellMesh->GetIndexCount(), 0, 0);
 		//graphics::GetDevice()->DrawIndexed(render::wallMesh->GetIndexCount(), 0, 0);
 

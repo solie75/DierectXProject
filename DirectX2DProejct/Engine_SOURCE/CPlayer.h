@@ -7,10 +7,10 @@ namespace sh
 		public CCell
 	{
 	private:
-		math::Vector3 playerPos;
-		float playerRadius;
+		//math::Vector3 playerPos;
+		//float playerRadius;
 		float playerSpeed;
-		math::Vector4 playerColor;
+		//math::Vector4 playerColor;
 
 	public:
 		CPlayer();

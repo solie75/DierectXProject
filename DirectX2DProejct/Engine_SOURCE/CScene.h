@@ -1,6 +1,7 @@
 #pragma once
 #include "CEntity.h"
 #include "CGameObject.h"
+#include "CWall.h"
 
 namespace sh
 {
@@ -17,6 +18,7 @@ namespace sh
 
 	private:
 		std::vector<CGameObject*> mGameObjects;
+		CWall* wall;
 
 	public:
 		void AddGameObject(CGameObject* _pGameObject);

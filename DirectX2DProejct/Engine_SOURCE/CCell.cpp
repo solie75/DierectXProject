@@ -4,7 +4,7 @@
 namespace sh
 {
 	CCell::CCell()
-		: degree(3.1215926 / 180)
+		: degree(3.1215926f / 180.f)
 		, position(Vector3(0.0f, 0.0f, 0.0f))
 	{
 	}
@@ -17,26 +17,25 @@ namespace sh
 	}*/
 	void CCell::Initialize()
 	{
-		render::cellVertexes[0].pos = position;
-		render::cellVertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		
 
-		for (int i = 1; i < 360; i++)
+		for (int i = 0; i <= 360; i++)
 		{
-			render::cellVertexes[i].pos = Vector3(cos(i * degree)* 0.1, sin(i * degree)*0.1, 0.0f);
+			render::cellVertexes[i].pos = Vector3(std::cos(i * degree), std::sin(i * degree), 0.0f);
 			render::cellVertexes[i].color = Vector4(1.f, 0.0f, 0.0f, 1.0f);
 		}
-		render::cellMesh->CreateVertexBuffer(render::cellVertexes, 361);
+		render::cellVertexes[361].pos = Vector3(0.0f, 0.0f, 0.0f);
+		render::cellVertexes[361].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		render::cellMesh->CreateVertexBuffer(render::cellVertexes, 362);
 
 		std::vector<UINT> cellIndexes = {};
-		for (int i = 1; i < 360; i++)
+		for (int i = 0; i <= 360; i++)
 		{
 			cellIndexes.push_back(i);
-			cellIndexes.push_back(0);
-			cellIndexes.push_back(i + 1);
+			cellIndexes.push_back(361);
 		}
-		cellIndexes.push_back(359);
-		cellIndexes.push_back(0);
 		cellIndexes.push_back(1);
+
 		render::cellMesh->CreateIndexBuffer(cellIndexes.data(), cellIndexes.size());
 	}
 	void CCell::Update()

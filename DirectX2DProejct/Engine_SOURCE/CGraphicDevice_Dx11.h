@@ -16,7 +16,6 @@ namespace sh::graphics
 		bool CreateTexture(const D3D11_TEXTURE2D_DESC* _desc, void* _data);
 
 		bool CreateBuffer(ID3D11Buffer** _buffer, D3D11_BUFFER_DESC* _desc, D3D11_SUBRESOURCE_DATA* _data);
-		//bool CreateShader();
 
 		bool CreateVertexShader(const void* pShaderByteCode, SIZE_T BytecodeLength, ID3D11VertexShader** ppVertexShader);
 		bool CreatePixelShader(const void* pShaderByteCode, SIZE_T BytecodeLength, ID3D11PixelShader** ppPixelShader);

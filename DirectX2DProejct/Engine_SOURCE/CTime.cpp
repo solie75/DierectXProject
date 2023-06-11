@@ -13,10 +13,8 @@ namespace sh
 
 	void CTime::Initiailize()
 	{
-		// CPU 고유 진동수 가져오기
 		QueryPerformanceFrequency(&mCpuFrequency);
 
-		// 프로그램이 처음 시작할때 진동수
 		QueryPerformanceCounter(&mPrevFrequency);
 	}
 
@@ -42,10 +40,7 @@ namespace sh
 			wchar_t szFloat[50] = {};
 			float FPS = 1.0f / (float)mDeltaTime;
 			swprintf_s(szFloat, 50, L"FPS : %d", (UINT)FPS);
-			//int iLen = wcsnlen_s(szFloat, 50);
 			SetWindowText(hWnd, szFloat);
-
-			//TextOut(hdc, 0, 0, szFloat, 20);
 			mSecond = 0.0f;
 		}
 	}

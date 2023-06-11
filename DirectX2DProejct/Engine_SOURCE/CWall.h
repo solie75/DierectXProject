@@ -13,7 +13,6 @@ namespace sh
 		virtual void Initialize();
 		virtual void Render();
 		virtual void Update();
-		//virtual void LateUpdate();
 
 	};
 }

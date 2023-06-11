@@ -10,7 +10,6 @@ namespace sh
 	{
 	private:
 		ID3D11InputLayout* mInputLayout;
-		//D3D11_PRIMITIVE_TOPOLOGY mTopology;
 
 		Microsoft::WRL::ComPtr<ID3DBlob> mVSBlob;
 		Microsoft::WRL::ComPtr<ID3DBlob> mHSBlob;

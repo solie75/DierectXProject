@@ -3,7 +3,6 @@ namespace sh
 {
 	CShader::CShader()
 		: mInputLayout(nullptr)
-		//, mTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	{
 	}
 	CShader::~CShader()
@@ -16,8 +15,7 @@ namespace sh
 	}
 	bool CShader::Create(const eShaderStage _stage, const std::wstring& fileName, const std::string& funcName)
 	{
-		// VS shader 경로s
-
+		// VS shader 경로
 		std::filesystem::path shaderPath = std::filesystem::current_path().parent_path();
 		shaderPath += L"\\Shader_SOURCE\\";
 

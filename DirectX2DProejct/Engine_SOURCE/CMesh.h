@@ -26,7 +26,7 @@ namespace sh
 		bool CreateVertexBuffer(void* _data, UINT _count);
 		bool CreateIndexBuffer(void* _data, UINT _count);
 
-		void BindBuffer(); // buffer 를 파이프 라인에 연결한다.
+		void BindBuffer();
 
 		UINT GetIndexCount() { return mIndexCount; }
 	};

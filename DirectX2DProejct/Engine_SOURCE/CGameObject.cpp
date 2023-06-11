@@ -27,6 +27,7 @@ namespace sh
 
 	void CGameObject::LateUpdate()
 	{
+	
 	}
 
 	void CGameObject::Render()

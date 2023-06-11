@@ -43,6 +43,11 @@ namespace sh
 
 	void CApplication::LateUpdate()
 	{
+		mScene->LateUpdate();
+		if (mScene->GetScore() > 0.3f || mScene->GetScore() < 0.f)
+		{
+			DestroyWindow(mHwnd);
+		}
 	}
 
 	void CApplication::Render()

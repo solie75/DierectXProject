@@ -3,6 +3,13 @@
 
 namespace sh
 {
+	enum class DIRECTION
+	{
+		RIGHT,
+		LEFT,
+		UP,
+		DOWN
+	};
 	class CPlayer :
 		public CCell
 	{
@@ -11,6 +18,8 @@ namespace sh
 		//float playerRadius;
 		float playerSpeed;
 		//math::Vector4 playerColor;
+	public:
+		bool OnCollision[4] = {};
 
 	public:
 		CPlayer();
@@ -20,6 +29,7 @@ namespace sh
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
+		void SetCollision(DIRECTION _direction, bool _b);
 	};
 }
 

@@ -11,10 +11,6 @@ namespace sh
 	CCell::~CCell()
 	{
 	}
-	/*void CCell::SetCellPosition(Vector3 _v3)
-	{
-		position = _v3;
-	}*/
 	void CCell::Initialize()
 	{
 		

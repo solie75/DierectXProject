@@ -45,10 +45,6 @@ namespace render
 		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
 		constantBuffer->Create(sizeof(Transform));
 		constantBuffer->Bind(eShaderStage::VS);
-
-		/*FixedPosConstantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
-		FixedPosConstantBuffer->Create(sizeof(Transform));
-		FixedPosConstantBuffer->Bind(eShaderStage::VS);*/
 	}
 
 	void LoadShader()

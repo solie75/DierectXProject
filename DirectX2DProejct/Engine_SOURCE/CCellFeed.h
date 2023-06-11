@@ -1,5 +1,6 @@
 #pragma once
 #include "CCell.h"
+#include "CRenderer.h"
 namespace sh
 {
 	class CCellFeed :
@@ -12,6 +13,9 @@ namespace sh
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
+
+	private:
+		//render::Transform transform;
 	};
 
 }

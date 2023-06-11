@@ -8,14 +8,16 @@ namespace sh
 {
 	CPlayer::CPlayer()
 		: 
-		//playerRadius(0.5f)
 		playerSpeed(0.5f)
-		//, playerPos(0.f, 0.f, 0.f)
-		//, playerColor(1.0f, 0.f, 0.f, 1.f)
 	{
+		for (int i = 0; i < 4; i++)
+		{
+			OnCollision[i] = false;
+		}
+
 		transform.pos = Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 		transform.color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
-		transform.scale = Vector4(0.8f, 0.0f, 0.0f, 0.0f);
+		transform.scale = Vector4(0.1f, 0.0f, 0.0f, 0.0f);
 	}
 	CPlayer::~CPlayer()
 	{
@@ -26,101 +28,36 @@ namespace sh
 	}
 	void CPlayer::Update()
 	{
-		/*if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed)
-		{	
-			playerPos.x += (sh::CTime::DeltaTime()* playerSpeed);
-		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::LEFT) == sh::eKeyState::Pressed)
-		{	
-			playerPos.x -= (sh::CTime::DeltaTime()* playerSpeed);
-		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::UP) == sh::eKeyState::Pressed)
-		{	
-			playerPos.y += (sh::CTime::DeltaTime()* playerSpeed);
-		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::DOWN) == sh::eKeyState::Pressed)
-		{	
-			playerPos.y -= (sh::CTime::DeltaTime()* playerSpeed);
-		}*/
-		if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed)
+		if (sh::CInput::GetKeyState(sh::eKeyCode::RIGHT) == sh::eKeyState::Pressed && OnCollision[(INT)DIRECTION::RIGHT] == false)
 		{
 			transform.pos.x += (sh::CTime::DeltaTime() * playerSpeed);
 		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::LEFT) == sh::eKeyState::Pressed)
+		if (sh::CInput::GetKeyState(sh::eKeyCode::LEFT) == sh::eKeyState::Pressed && OnCollision[(INT)DIRECTION::LEFT] == false)
 		{
 			transform.pos.x -= (sh::CTime::DeltaTime() * playerSpeed);
 		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::UP) == sh::eKeyState::Pressed)
+		if (sh::CInput::GetKeyState(sh::eKeyCode::UP) == sh::eKeyState::Pressed && OnCollision[(INT)DIRECTION::UP] == false)
 		{
 			transform.pos.y += (sh::CTime::DeltaTime() * playerSpeed);
 		}
-		if (sh::CInput::GetKeyState(sh::eKeyCode::DOWN) == sh::eKeyState::Pressed)
+		if (sh::CInput::GetKeyState(sh::eKeyCode::DOWN) == sh::eKeyState::Pressed && OnCollision[(INT)DIRECTION::DOWN] == false)
 		{
 			transform.pos.y -= (sh::CTime::DeltaTime() * playerSpeed);
 		}                              
 	}
 	void CPlayer::LateUpdate()
 	{
+
 	}
 	void CPlayer::Render()
 	{
 		render::constantBuffer->SetData(&(transform));
 		CCell::Render();
 		render::shader->Binds(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-		//GetDevice()->BindPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 		CGameObject::Render();
 	}
-}
-
-/*for (GameObject* gameObj : mGameObjects)
-{
-	gameObj->Render();
-}
-
-wall->Render();
-
-if (mGameObjects.size() <= 1)
-return;
-
-auto playerIter = mGameObjects.begin();
-for (auto iter = playerIter + 1; iter != mGameObjects.end();)
-{
-	if (Vector2::Distance(Vector2((*playerIter)->trans.pos.x, (*playerIter)->trans.pos.y)
-		, Vector2((*iter)->trans.pos.x, (*iter)->trans.pos.y))
-		- fabs((*playerIter)->trans.scale.x + (*iter)->trans.scale.x) < 0)
+	void CPlayer::SetCollision(DIRECTION _direction, bool _b)
 	{
-
-		(*playerIter)->trans.scale.x += (*iter)->trans.scale.x * 0.3f;
-
-		iter = mGameObjects.erase(iter);
-	}
-	else
-	{
-		iter++;
+		OnCollision[(int)_direction] = _b;
 	}
 }
-
-if (((*playerIter)->trans.pos.x - (*playerIter)->trans.scale.x)
-	- (wall->trans.pos.x - wall->trans.scale.x) <= 0)
-	GameObject::OnCollision[0] = true;
-else
-GameObject::OnCollision[0] = false;
-
-if (((*playerIter)->trans.pos.x + (*playerIter)->trans.scale.x)
-	- (wall->trans.pos.x + wall->trans.scale.x) >= 0)
-	GameObject::OnCollision[1] = true;
-else
-GameObject::OnCollision[1] = false;
-
-if (((*playerIter)->trans.pos.y + (*playerIter)->trans.scale.x)
-	- (wall->trans.pos.y + wall->trans.scale.x) >= 0)
-	GameObject::OnCollision[2] = true;
-else
-GameObject::OnCollision[2] = false;
-
-if (((*playerIter)->trans.pos.y - (*playerIter)->trans.scale.x)
-	- (wall->trans.pos.y - wall->trans.scale.x) <= 0)
-	GameObject::OnCollision[3] = true;
-else
-GameObject::OnCollision[3] = false;
-	}*/

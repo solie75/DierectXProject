@@ -25,6 +25,8 @@ namespace sh
 		virtual void LateUpdate();
 		virtual void Render();
 
+	
+
 		render::Transform transform;
 
 	};

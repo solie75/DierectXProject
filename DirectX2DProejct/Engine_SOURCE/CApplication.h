@@ -24,6 +24,8 @@ namespace sh
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
 		HWND GetHwnd() { return mHwnd; }
+		
+
 
 	private:
 		bool mbInitialize = false;

@@ -44,8 +44,9 @@ namespace sh
 	void CApplication::LateUpdate()
 	{
 		mScene->LateUpdate();
-		if (mScene->GetScore() > 0.3f || mScene->GetScore() < 0.f)
+		if (mScene->GetScore() > 0.7f || mScene->GetScore() < 0.f)
 		{
+			// player 의 소멸 또는 일정 크기 이상으로 게임 종료
 			DestroyWindow(mHwnd);
 		}
 	}

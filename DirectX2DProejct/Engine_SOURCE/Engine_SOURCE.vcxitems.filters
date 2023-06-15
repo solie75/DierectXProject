@@ -16,9 +16,6 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{978b9d4c-6652-47e4-be98-fa9c83e1c1a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{c9cd6c64-c2ff-4dae-b6ac-b08629051280}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{b879ee9c-0742-4392-a244-0ed088eda4bd}</UniqueIdentifier>
     </Filter>
@@ -52,6 +49,9 @@
     <Filter Include="GameObject\Cell\CellFeed">
       <UniqueIdentifier>{9cb34d80-e6ba-4b76-9fbc-5f3b3bf06d80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Resource">
+      <UniqueIdentifier>{c9cd6c64-c2ff-4dae-b6ac-b08629051280}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CEntity.h">
@@ -73,7 +73,7 @@
       <Filter>Common\Time</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CResource.h">
-      <Filter>Resource</Filter>
+      <Filter>Scene\Resource</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CApplication.h">
       <Filter>High Level Interface</Filter>
@@ -137,7 +137,7 @@
       <Filter>Common\Time</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CResource.cpp">
-      <Filter>Resource</Filter>
+      <Filter>Scene\Resource</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CApplication.cpp">
       <Filter>High Level Interface</Filter>

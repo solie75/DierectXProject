@@ -22,19 +22,23 @@ namespace sh::graphics
 		swapChainDesc.BufferCount = 2;
 		swapChainDesc.BufferDesc.Width = application.GetWidth();
 		swapChainDesc.BufferDesc.Height = application.GetHeight();
-
+		
+		//create swapchian
 		if (!CreateSwapChain(&swapChainDesc, hWnd))
 		{
 			return;
 		}
 
+		// RenderTarget Buffer 持失
 		if (FAILED(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)mRenderTarget.GetAddressOf())))
 		{
 			return;
 		}
 
+		// rendertarget view 持失
 		mDevice->CreateRenderTargetView((ID3D11Resource*)mRenderTarget.Get(), nullptr, mRenderTargetView.GetAddressOf());
 
+		// DepthStencil buffer 持失
 		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
 		depthStencilDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
 		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -128,6 +132,7 @@ namespace sh::graphics
 
 	bool CGraphicDevice_Dx11::CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data)
 	{
+
 		D3D11_TEXTURE2D_DESC dxgiDesc = {};
 		dxgiDesc.BindFlags = desc->BindFlags;
 		dxgiDesc.Usage = desc->Usage;
@@ -244,6 +249,7 @@ namespace sh::graphics
 			break;
 		case eShaderStage::PS:
 			mContext->PSSetConstantBuffers((UINT)_type, 1, &_buffer);
+			break;
 		case eShaderStage::CS:
 			mContext->CSSetConstantBuffers((UINT)_type, 1, &_buffer);
 			break;

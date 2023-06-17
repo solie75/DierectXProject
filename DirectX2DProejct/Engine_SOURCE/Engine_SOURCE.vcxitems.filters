@@ -40,15 +40,6 @@
     <Filter Include="Scene\Layer">
       <UniqueIdentifier>{9a867a62-f984-40e1-8a51-fc461fabafe6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\wall">
-      <UniqueIdentifier>{c77f048e-c763-490d-bec3-35f6eac1fda0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Cell">
-      <UniqueIdentifier>{e0cb35ba-715f-4140-9fc1-8752d774323e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Cell\Player">
-      <UniqueIdentifier>{dea23ec4-5f44-4e8f-8e3c-e15c42ec9ca0}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CEntity.h">
@@ -110,15 +101,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CLayer.h">
       <Filter>Scene\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CPlayer.h">
-      <Filter>GameObject\Cell\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CWall.h">
-      <Filter>GameObject\wall</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CCell.h">
-      <Filter>GameObject\Cell</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp">
@@ -167,15 +149,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CLayer.cpp">
       <Filter>Scene\Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CPlayer.cpp">
-      <Filter>GameObject\Cell\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CWall.cpp">
-      <Filter>GameObject\wall</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CCell.cpp">
-      <Filter>GameObject\Cell</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

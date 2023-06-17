@@ -3,11 +3,9 @@
 
 namespace render
 {
-	Vertex cellVertexes[360] = {};
 	Vertex wallVertexes[4] = {};
 
-	sh::CMesh* cellMesh = nullptr;
-	sh::CMesh* wallMesh = nullptr;
+	sh::CMesh* RectangleMesh = nullptr;
 
 	sh::CShader* shader = nullptr;
 
@@ -36,7 +34,7 @@ namespace render
 
 	void LoadBuffer()
 	{
-		cellMesh = new sh::CMesh();
+		RectangleMesh = new sh::CMesh();
 		
 		//wallMesh = new sh::CMesh();
 
@@ -70,8 +68,7 @@ namespace render
 	}
 	void Release()
 	{
-		delete cellMesh;
-		delete wallMesh;
+		delete RectangleMesh;
 		delete shader;
 		delete constantBuffer;
 	}

@@ -17,7 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CApplication.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CCell.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CEngine.h" />
@@ -30,7 +29,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CPlayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CSceneManager.h" />
@@ -39,11 +37,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CResource.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CWall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CApplication.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CCell.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp" />
@@ -52,7 +48,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CMesh.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CSceneManager.cpp" />
@@ -61,7 +56,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CResource.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CWall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CMath.inl" />

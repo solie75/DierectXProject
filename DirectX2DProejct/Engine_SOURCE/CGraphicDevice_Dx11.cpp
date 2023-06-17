@@ -306,6 +306,10 @@ namespace sh::graphics
 		BindViewPort(&mViewPort);
 
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+
+		render::RectangleMesh->BindBuffer();
+		render::shader->Binds();
+		graphics::GetDevice()->DrawIndexed(render::RectangleMesh->GetIndexCount(), 0, 0);
 	}
 	void CGraphicDevice_Dx11::Present()
 	{

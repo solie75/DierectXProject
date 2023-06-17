@@ -22,12 +22,10 @@ namespace render
 	};
 
 	extern Transform transform;
-	extern sh::CMesh* cellMesh;
-	extern sh::CMesh* wallMesh;
+	extern sh::CMesh* RectangleMesh;
 	extern sh::CShader* shader;
 
-	extern Vertex cellVertexes[];
-	extern Vertex wallVertexes[];
+	extern Vertex Vertexes[];
 
 	extern sh::graphics::CConstantBuffer* constantBuffer;
 

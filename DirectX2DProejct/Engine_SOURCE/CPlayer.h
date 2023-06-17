@@ -1,10 +1,8 @@
 #pragma once
-#include "CCell.h"
 
 namespace sh
 {
-	class CPlayer :
-		public CCell
+	class CPlayer
 	{
 	private:
 		math::Vector3 playerPos;

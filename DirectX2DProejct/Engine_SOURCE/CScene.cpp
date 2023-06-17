@@ -1,7 +1,5 @@
 #include "CScene.h"
 #include "CRenderer.h"
-#include "CWall.h"
-#include "CPlayer.h"
 
 namespace sh
 {
@@ -15,8 +13,7 @@ namespace sh
 
 	void CScene::Initialize()
 	{
-		AddGameObject(new CWall);
-		AddGameObject(new CPlayer);
+		//AddGameObject(new CPlayer);
 
 		for (int i = 0; i < mGameObjects.size(); i++)
 		{

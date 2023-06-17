@@ -3,7 +3,7 @@
 
 namespace render
 {
-	Vertex wallVertexes[4] = {};
+	Vertex Vertexes[4] = {};
 
 	sh::CMesh* RectangleMesh = nullptr;
 
@@ -35,17 +35,23 @@ namespace render
 	void LoadBuffer()
 	{
 		RectangleMesh = new sh::CMesh();
-		
-		//wallMesh = new sh::CMesh();
+		RectangleMesh->CreateVertexBuffer(Vertexes, 4);
 
-		//wallMesh->CreateVertexBuffer(wallVertexes, 4);
-		//std::vector<UINT> wallMeshIndexes = {};
-		//wallMesh->CreateIndexBuffer(wallMeshIndexes.data(), wallMeshIndexes.size());
+		std::vector<UINT> indexes = {};
+		indexes.push_back(0);
+		indexes.push_back(1);
+		indexes.push_back(2);
+
+		indexes.push_back(0);
+		indexes.push_back(2);
+		indexes.push_back(3);
+		RectangleMesh->CreateIndexBuffer(indexes.data(), indexes.size());
+
 
 		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
 		constantBuffer->Create(sizeof(Transform));
-		Transform trans = Transform{ Vector4(0.0f, 0.0f, 0.0f, 1.f) , Vector4(1.0f, 0.f, 0.f, 0.f), Vector4(0.0f, 0.0f, 0.0f, 1.f) };
-		constantBuffer->SetData(&trans);
+		Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
+		constantBuffer->SetData(&pos);
 		constantBuffer->Bind(eShaderStage::VS);
 	}
 
@@ -58,6 +64,19 @@ namespace render
 
 	void Initialize()
 	{
+
+		Vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
+		Vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		
+		Vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
+		Vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		
+		Vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
+		Vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		
+		Vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		Vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+
 		LoadShader();
 		LoadBuffer();
 		SetupState();

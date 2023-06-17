@@ -1,11 +1,14 @@
 #pragma once
 #include "CEntity.h"
-#include "CGameObject.h"
+#include "CLayer.h"
 
 namespace sh
 {
 	class CScene : public CEntity
 	{
+
+	private:
+		std::vector<CGameObject*> mLayers;
 	public:
 		CScene();
 		virtual ~CScene();
@@ -15,10 +18,6 @@ namespace sh
 		virtual void LateUpdate();
 		virtual void Render();
 
-	private:
-		std::vector<CGameObject*> mGameObjects;
 
-	public:
-		void AddGameObject(CGameObject* _pGameObject);
 	};
 }

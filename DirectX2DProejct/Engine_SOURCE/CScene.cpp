@@ -8,24 +8,21 @@ namespace sh
 	}
 	CScene::~CScene()
 	{
-
 	}
 
 	void CScene::Initialize()
 	{
-		//AddGameObject(new CPlayer);
-
-		for (int i = 0; i < mGameObjects.size(); i++)
+		for (int i = 0; i < mLayers.size(); i++)
 		{
-			mGameObjects[i]->Initialize();
+			mLayers[i]->Initialize();
 		}
 	}
 
 	void CScene::Update()
 	{
-		for (int i = 0; i < mGameObjects.size(); i++)
+		for (int i = 0; i < mLayers.size(); i++)
 		{
-			mGameObjects[i]->Update();
+			mLayers[i]->Update();
 		}
 	}
 
@@ -34,13 +31,9 @@ namespace sh
 	}
 	void CScene::Render()
 	{
-		for (int i = 0; i < mGameObjects.size(); i++)
+		for (int i = 0; i < mLayers.size(); i++)
 		{
-			mGameObjects[i]->Render();
+			mLayers[i]->Render();
 		}
-	}
-	void CScene::AddGameObject(CGameObject* _pGameObject)
-	{
-		mGameObjects.push_back(_pGameObject);
 	}
 }

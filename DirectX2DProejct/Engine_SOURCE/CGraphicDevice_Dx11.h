@@ -35,17 +35,17 @@ namespace sh::graphics
 
 		bool CompileFromFile(const std::wstring& fileName, const std::string& funcName,
 			const std::string& version, ID3DBlob** ppBlob);
-
-
-
 		void BindVertexShader(ID3D11VertexShader* pVertexShader);
 		void BindPixelShader(ID3D11PixelShader* pPixelShader);
+		void BindShaderResource(eShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** ppSRV);
 
 		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation);
 		void ClearTarget();
 		void UpdateViewPort();
 		void Draw();
 		void Present();
+
+		ID3D11Device* GetID3D11Device() { return mDevice.Get(); }
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device> mDevice;

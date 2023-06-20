@@ -8,10 +8,13 @@
 using namespace sh::math;
 namespace render
 {
+
+
 	struct Vertex
 	{
 		Vector3 pos;
 		Vector4 color;
+		Vector2 uv;
 	};
 
 	struct Transform

@@ -40,6 +40,9 @@
     <Filter Include="Scene\Layer">
       <UniqueIdentifier>{9a867a62-f984-40e1-8a51-fc461fabafe6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Resources">
+      <UniqueIdentifier>{a959dced-2eb4-4b5d-b342-0c326b15d171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CEntity.h">
@@ -110,6 +113,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CTransform.h">
       <Filter>GameObject\Component</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CTexture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CResources.h">
+      <Filter>Resource\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp">
@@ -167,6 +174,10 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CTransform.cpp">
       <Filter>GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CTexture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CResources.cpp">
+      <Filter>Resource\Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

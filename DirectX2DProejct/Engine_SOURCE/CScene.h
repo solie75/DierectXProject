@@ -18,6 +18,9 @@ namespace sh
 		virtual void LateUpdate();
 		virtual void Render();
 
+		virtual void OnEnter();
+		virtual void OnExit();
+
 		void AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj);
 	};
 }

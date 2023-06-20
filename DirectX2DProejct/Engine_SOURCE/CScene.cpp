@@ -38,6 +38,12 @@ namespace sh
 			mLayers[i].Render();
 		}
 	}
+	void CScene::OnEnter()
+	{
+	}
+	void CScene::OnExit()
+	{
+	}
 	void CScene::AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj)
 	{
 		mLayers[(int)type].AddGameObject(gameObj);

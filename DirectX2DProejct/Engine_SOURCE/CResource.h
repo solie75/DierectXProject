@@ -1,5 +1,5 @@
 #pragma once
-#include "CEngine.h"
+#include "CEntity.h"
 
 namespace sh
 {
@@ -20,6 +20,8 @@ namespace sh
 
 		void SetKey(const std::wstring& key) { mKey = key; }
 		void SetPath(const std::wstring& path) { mPath = path; }
+
+		
 	};
 }
 

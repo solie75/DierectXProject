@@ -42,6 +42,8 @@ namespace sh::graphics
 		void BindPixelShader(ID3D11PixelShader* pPixelShader);
 
 		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation);
+		void ClearTarget();
+		void UpdateViewPort();
 		void Draw();
 		void Present();
 

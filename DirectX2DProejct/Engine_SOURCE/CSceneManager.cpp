@@ -1,4 +1,5 @@
 #include "CSceneManager.h"
+#include "CPlayScene.h"
 
 namespace sh
 {
@@ -6,6 +7,7 @@ namespace sh
 	void CSceneManager::Initialize()
 	{
 		mActiveScene = new CPlayScene();
+		mActiveScene->Initialize();
 	}
 	void CSceneManager::Update()
 	{

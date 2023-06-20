@@ -34,7 +34,7 @@ namespace sh
 		UINT mWidth;
 		UINT mHeight;
 
-		CScene* mScene;
+		//CScene* mScene;
 	};
 }
 

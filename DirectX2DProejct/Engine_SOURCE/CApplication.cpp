@@ -1,4 +1,5 @@
 #include "CApplication.h"
+#include "CSceneManager.h"
 
 namespace sh
 {
@@ -27,9 +28,7 @@ namespace sh
 		CInput::Initialize();
 
 		render::Initialize();
-		
-		mScene = new CScene;
-		mScene->Initialize();
+		CSceneManager::Initialize();
 	}
 
 	void CApplication::Update()
@@ -37,19 +36,24 @@ namespace sh
 		CTime::Update();
 		CInput::Update();
 
-		mScene->Update();
+		CSceneManager::Update();
 	}
 
 	void CApplication::LateUpdate()
 	{
+		CSceneManager::LateUpdate();
 	}
 
 	void CApplication::Render()
 	{
 		CTime::Render();
 
-		graphicDevice->Draw();
-		mScene->Render();
+		graphicDevice->ClearTarget();
+		graphicDevice->UpdateViewPort();
+		CSceneManager::Render();
+
+		//graphicDevice->Draw();
+		//mScene->Render();
 		graphicDevice->Present();
 	}
 

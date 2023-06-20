@@ -38,5 +38,9 @@ namespace sh
 		}
 	}
 
-}
+	void CLayer::AddGameObject(CGameObject* gameObj)
+	{
+		mGameObjects.push_back(gameObj);
+	}
 
+}

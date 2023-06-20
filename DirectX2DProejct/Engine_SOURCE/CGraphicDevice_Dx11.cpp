@@ -73,8 +73,6 @@ namespace sh::graphics
 		BindViewPort(&mViewPort);
 
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
-
-
 	}
 
 	CGraphicDevice_Dx11::~CGraphicDevice_Dx11()
@@ -287,11 +285,48 @@ namespace sh::graphics
 
 	void CGraphicDevice_Dx11::Draw()
 	{
+		//// rendertarget clear
+		//FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+		//mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
+		//mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
+
+		//// viewport update
+		//HWND hWnd = application.GetHwnd();
+		//RECT winRect = {};
+		//GetClientRect(hWnd, &winRect);
+		//mViewPort = {
+		//	0.0f, 0.0f
+		//	, (float)(winRect.right - winRect.left)
+		//	, (float)(winRect.bottom - winRect.top)
+		//	, 0.0f, 1.0f
+		//};
+
+		//BindViewPort(&mViewPort);
+
+		//mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+
+		//render::RectangleMesh->BindBuffer();
+		//render::shader->Binds();
+		//graphics::GetDevice()->DrawIndexed(render::RectangleMesh->GetIndexCount(), 0, 0);
+	}
+	void CGraphicDevice_Dx11::Present()
+	{
+		mSwapChain->Present(0, 0);
+	}
+	void CGraphicDevice_Dx11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation)
+	{
+		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
+	}
+	void CGraphicDevice_Dx11::ClearTarget()
+	{
 		// rendertarget clear
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
 		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
-
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+	}
+	void CGraphicDevice_Dx11::UpdateViewPort()
+	{
 		// viewport update
 		HWND hWnd = application.GetHwnd();
 		RECT winRect = {};
@@ -302,22 +337,7 @@ namespace sh::graphics
 			, (float)(winRect.bottom - winRect.top)
 			, 0.0f, 1.0f
 		};
-
 		BindViewPort(&mViewPort);
-
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
-
-		render::RectangleMesh->BindBuffer();
-		render::shader->Binds();
-		graphics::GetDevice()->DrawIndexed(render::RectangleMesh->GetIndexCount(), 0, 0);
-	}
-	void CGraphicDevice_Dx11::Present()
-	{
-		mSwapChain->Present(0, 0);
-	}
-	void CGraphicDevice_Dx11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation)
-	{
-		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
 	}
 }
 

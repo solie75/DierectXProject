@@ -5,6 +5,7 @@ namespace sh
 {
 	CScene::CScene()
 	{
+		mLayers.resize((int)sh::enums::eLayerType::End);
 	}
 	CScene::~CScene()
 	{
@@ -12,28 +13,33 @@ namespace sh
 
 	void CScene::Initialize()
 	{
-		for (int i = 0; i < mLayers.size(); i++)
-		{
-			mLayers[i]->Initialize();
-		}
+
 	}
 
 	void CScene::Update()
 	{
 		for (int i = 0; i < mLayers.size(); i++)
 		{
-			mLayers[i]->Update();
+			mLayers[i].Update();
 		}
 	}
 
 	void CScene::LateUpdate()
 	{
+		for (CLayer& layer : mLayers)
+		{
+			layer.LateUpdate();
+		}
 	}
 	void CScene::Render()
 	{
 		for (int i = 0; i < mLayers.size(); i++)
 		{
-			mLayers[i]->Render();
+			mLayers[i].Render();
 		}
+	}
+	void CScene::AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj)
+	{
+		mLayers[(int)type].AddGameObject(gameObj);
 	}
 }

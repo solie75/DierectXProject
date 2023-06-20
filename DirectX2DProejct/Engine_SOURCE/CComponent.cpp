@@ -3,8 +3,8 @@
 
 namespace sh
 {
-	Component::Component()
-		: mType(eComponentType::End)
+	Component::Component(eComponentType type)
+		: mType(type)
 	{
 
 	}

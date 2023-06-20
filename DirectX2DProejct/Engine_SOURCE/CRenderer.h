@@ -21,7 +21,7 @@ namespace render
 		Vector4 color;
 	};
 
-	extern Transform transform;
+	//extern Transform transform;
 	extern sh::CMesh* RectangleMesh;
 	extern sh::CShader* shader;
 

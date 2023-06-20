@@ -14,6 +14,8 @@ namespace sh
 		virtual void LateUpdate();
 		virtual void Render();
 
+		void AddGameObject(CGameObject* gameObj);
+
 	private:
 		std::vector<CGameObject*> mGameObjects;
 	};

@@ -50,9 +50,10 @@ namespace render
 
 		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
 		constantBuffer->Create(sizeof(Transform));
-		Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
+
+		/*Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
 		constantBuffer->SetData(&pos);
-		constantBuffer->Bind(eShaderStage::VS);
+		constantBuffer->Bind(eShaderStage::VS);*/
 	}
 
 	void LoadShader()
@@ -77,8 +78,8 @@ namespace render
 		Vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
 		Vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		LoadShader();
 		LoadBuffer();
+		LoadShader();
 		SetupState();
 	}
 

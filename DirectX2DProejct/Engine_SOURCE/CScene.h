@@ -8,7 +8,7 @@ namespace sh
 	{
 
 	private:
-		std::vector<CGameObject*> mLayers;
+		std::vector<CLayer> mLayers;
 	public:
 		CScene();
 		virtual ~CScene();
@@ -18,6 +18,6 @@ namespace sh
 		virtual void LateUpdate();
 		virtual void Render();
 
-
+		void AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj);
 	};
 }

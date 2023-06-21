@@ -13,6 +13,7 @@ namespace sh
 		static void Update();
 		static void LateUpdate();
 		static void Render();
+		static void Release();
 
 		static CScene* GetActiveScene() { return mActiveScene; }
 		static CScene* LoadScene(std::wstring name);

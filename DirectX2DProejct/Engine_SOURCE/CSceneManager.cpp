@@ -9,7 +9,8 @@ namespace sh
 	void CSceneManager::Initialize()
 	{
 		mActiveScene = new CPlayScene();
-		mActiveScene->Initialize();
+		/*mActiveScene->Initialize();*/
+		mScenes.insert(std::make_pair(L"PlayScene", mActiveScene));
 	}
 	void CSceneManager::Update()
 	{
@@ -22,6 +23,15 @@ namespace sh
 	void CSceneManager::Render()
 	{
 		mActiveScene->Render();
+	}
+
+	void CSceneManager::Release()
+	{
+		for (auto iter : mScenes)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
 	}
 
 	CScene* CSceneManager::LoadScene(std::wstring name)

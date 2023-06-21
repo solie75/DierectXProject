@@ -8,6 +8,15 @@ namespace sh
 
 	CLayer::~CLayer()
 	{
+		for (CGameObject* gameObj : mGameObjects)
+		{
+			if (gameObj == nullptr)
+			{
+				continue;
+			}
+			delete gameObj;
+			gameObj = nullptr;
+		}
 	}
 
 	void CLayer::Initialize()

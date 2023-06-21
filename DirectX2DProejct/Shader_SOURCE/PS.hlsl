@@ -13,13 +13,16 @@ struct VSOut
 };
 
 Texture2D smileTexture : register(t0);
-SamplerState samplerState : register(s0);
+
+// 두 가지 samplerState 사용
+SamplerState pointerSampler : register(s0);
+SamplerState anisotropicSampler : register(s1);
 
 float4 main(VSOut In) : SV_TARGET
 {
     //return In.Color;
     float4 color = (float) 0.0f;
-    color = smileTexture.Sample(samplerState, In.UV);
+    color = smileTexture.Sample(anisotropicSampler, In.UV);
     
     return color;
 

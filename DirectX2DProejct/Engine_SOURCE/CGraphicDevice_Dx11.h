@@ -22,6 +22,7 @@ namespace sh::graphics
 		bool CreatePixelShader(const void* pShaderByteCode, SIZE_T BytecodeLength, ID3D11PixelShader** ppPixelShader);
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDesc
 			, UINT NumElement, ID3DBlob* byteCode, ID3D11InputLayout** ppInputLayout);
+		bool CreateSampler(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState);
 		
 		void BindViewPort(D3D11_VIEWPORT* viewPort);
 		void BindVertexBuffer(UINT StartSlot, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
@@ -38,6 +39,7 @@ namespace sh::graphics
 		void BindVertexShader(ID3D11VertexShader* pVertexShader);
 		void BindPixelShader(ID3D11PixelShader* pPixelShader);
 		void BindShaderResource(eShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** ppSRV);
+		void BindSampler(eShaderStage stage, UINT StartSlot, ID3D11SamplerState** ppSamplerState);
 
 		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation);
 		void ClearTarget();

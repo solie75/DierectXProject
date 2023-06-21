@@ -7,15 +7,16 @@ namespace sh
 {
 	CPlayScene::CPlayScene()
 	{
+		CGameObject* player = new CGameObject();
+		AddGameObject(eLayerType::Player, player);
+		player->AddComponent<CMeshRenderer>();
 	}
 	CPlayScene::~CPlayScene()
 	{
 	}
 	void CPlayScene::Initialize()
 	{
-		CGameObject* player = new CGameObject();
-		AddGameObject(eLayerType::Player, player);
-		player->AddComponent<CMeshRenderer>();
+		
 	}
 	void CPlayScene::Update()
 	{

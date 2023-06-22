@@ -22,6 +22,15 @@ namespace sh
 			delete comp;
 			comp = nullptr;
 		}
+		for (CScript* script : mScripts)
+		{
+			if (script == nullptr)
+			{
+				continue;
+			}
+			delete script;
+			script = nullptr;
+		}
 	}
 
 	void CGameObject::Initialize()
@@ -38,6 +47,10 @@ namespace sh
 		{
 			comp->Update();
 		}
+		for (CScript* script : mScripts)
+		{
+			script->Update();
+		}
 	}
 
 	void CGameObject::LateUpdate()
@@ -45,6 +58,10 @@ namespace sh
 		for (Component* comp : mComponents)
 		{
 			comp->LateUpdate();
+		}
+		for (CScript* script : mScripts)
+		{
+			script->LateUpdate();
 		}
 	}
 
@@ -55,6 +72,10 @@ namespace sh
 		for (Component* comp : mComponents)
 		{
 			comp->Render();
+		}
+		for (CScript* script : mScripts)
+		{
+			script->Render();
 		}
 
 	}

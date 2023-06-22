@@ -2,7 +2,8 @@
 namespace sh
 {
 	CShader::CShader()
-		: mInputLayout(nullptr)
+		: CResource(enums::eResourceType::Shader)
+		, mInputLayout(nullptr)
 		, mTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	{
 	}

@@ -2,8 +2,10 @@
 
 namespace sh
 {
-	CResource::CResource()
+	CResource::CResource(const enums::eResourceType type)
+		:mType(type)
 	{
+		
 	}
 
 	CResource::~CResource()

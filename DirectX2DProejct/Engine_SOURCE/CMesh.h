@@ -28,6 +28,8 @@ namespace sh
 
 		void BindBuffer(); // buffer 를 파이프 라인에 연결한다.
 
+		void Render();
+
 		UINT GetIndexCount() { return mIndexCount; }
 	};
 }

@@ -2,6 +2,6 @@
 
 namespace sh
 {
-	std::map<std::wstring, CResource*> CResources::mResources;
+	std::map<std::wstring, std::shared_ptr<CResource>> CResources::mResources;
 
 }

@@ -81,8 +81,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CRenderer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CMesh.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CConstantBuffer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -117,6 +115,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CResources.h">
       <Filter>Resource\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CMesh.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CShader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CMaterial.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CCameraScript.h">
+      <Filter>GameObject\Component\CScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp">
@@ -143,8 +151,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CRenderer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CMesh.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CConstantBuffer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
@@ -178,6 +184,16 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CResources.cpp">
       <Filter>Resource\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CMesh.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CShader.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CMaterial.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CCameraScript.cpp">
+      <Filter>GameObject\Component\CScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

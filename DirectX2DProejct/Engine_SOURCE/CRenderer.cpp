@@ -2,6 +2,7 @@
 //#include "CInput.h"
 #include "CResources.h"
 #include "CTexture.h"
+#include "CMaterial.h"
 
 namespace render
 {
@@ -10,11 +11,13 @@ namespace render
 
 	Vertex Vertexes[4] = {};
 
-	sh::CMesh* RectangleMesh = nullptr;
+	//sh::CMesh* RectangleMesh = nullptr;
 
-	sh::CShader* shader = nullptr;
+	//sh::CShader* shader = nullptr;
 
-	sh::graphics::CConstantBuffer* constantBuffer = nullptr;
+	//sh::graphics::CConstantBuffer* constantBuffer = nullptr;
+
+	sh::graphics::CConstantBuffer* constantBuffer[(UINT)eCBType::End] = {};
 
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[(UINT)eSamplerType::End] = {};
 
@@ -43,8 +46,18 @@ namespace render
 		arrLayout[2].SemanticName = "TEXCOORD";
 		arrLayout[2].SemanticIndex = 0;
 
-		sh::graphics::GetDevice()->CreateInputLayout(arrLayout, 3, shader->GetVSCode(), shader->GetInputLayoutAddressof());
+		//sh::graphics::GetDevice()->CreateInputLayout(arrLayout, 3, shader->GetVSCode(), shader->GetInputLayoutAddressof());
 	
+		/*CShader* shader = sh::CResources::Find<CShader>(L"TriangleShader");
+		sh::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());*/
+
+		std::shared_ptr<CShader> shader = sh::CResources::Find<CShader>(L"SpriteShader");
+		sh::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
+
 		// Sampler State
 		D3D11_SAMPLER_DESC desc = {};
 		desc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
@@ -61,8 +74,12 @@ namespace render
 
 	void LoadBuffer()
 	{
-		RectangleMesh = new sh::CMesh();
-		RectangleMesh->CreateVertexBuffer(Vertexes, 4);
+		//RectangleMesh = new sh::CMesh();
+		//RectangleMesh->CreateVertexBuffer(Vertexes, 4);
+
+		std::shared_ptr<CMesh> mesh = std::make_shared<CMesh>();
+		CResources::Insert(L"RectMesh", mesh);
+		mesh->CreateVertexBuffer(Vertexes, 4);
 
 		std::vector<UINT> indexes = {};
 		indexes.push_back(0);
@@ -72,11 +89,13 @@ namespace render
 		indexes.push_back(0);
 		indexes.push_back(2);
 		indexes.push_back(3);
-		RectangleMesh->CreateIndexBuffer(indexes.data(), indexes.size());
+		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 
-		constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Transform));
+		/*constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
+		constantBuffer->Create(sizeof(Transform));*/
+		constantBuffer[(UINT)eCBType::Transform] = new sh::graphics::CConstantBuffer(eCBType::Transform);
+		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(Transform));
 
 		/*Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
 		constantBuffer->SetData(&pos);
@@ -85,9 +104,28 @@ namespace render
 
 	void LoadShader()
 	{
-		shader = new sh::CShader();
+		//shader = new sh::CShader();
+		/*CShader* shader = new sh::CShader();
 		shader->Create(eShaderStage::VS, L"VS.hlsl", "main");
 		shader->Create(eShaderStage::PS, L"PS.hlsl", "main");
+		CResources::Insert(L"TriangleShader", shader);*/
+
+
+
+		std::shared_ptr<CShader> spliteShader = std::make_shared<CShader>();
+		spliteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
+		spliteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
+		CResources::Insert(L"SpriteShader", spliteShader);
+		
+		std::shared_ptr<CTexture> texture = CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
+		texture->BindShader(eShaderStage::PS, 0);
+
+		std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+		spriteMaterial->SetShader(spliteShader);
+		spriteMaterial->SetTexture(texture);
+		CResources::Insert(L"SpriteMaterial", spriteMaterial);
+
+
 	}
 
 	void Initialize()
@@ -113,10 +151,10 @@ namespace render
 		LoadShader();
 		SetupState();
 
-		CTexture* texture
+		/*CTexture* texture
 			= CResources::Load<CTexture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
 		texture = CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
-		texture->BindShader(eShaderStage::PS, 0);
+		texture->BindShader(eShaderStage::PS, 0);*/
 	}
 
 	void Update()
@@ -124,9 +162,17 @@ namespace render
 	}
 	void Release()
 	{
-		delete RectangleMesh;
+		/*delete mesh;
 		delete shader;
-		delete constantBuffer;
+		delete constantBuffer;*/
+
+		for (CConstantBuffer* buff : constantBuffer)
+		{
+			if (buff == nullptr)
+				continue;
+			
+			delete buff;
+			buff = nullptr;
+		}
 	}
 }
-

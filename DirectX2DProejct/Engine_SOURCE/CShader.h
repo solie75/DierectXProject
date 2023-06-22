@@ -39,7 +39,7 @@ namespace sh
 		{
 			return mInputLayout;
 		}
-		ID3D11InputLayout** GetInputLayoutAddressof()
+		ID3D11InputLayout** GetInputLayoutAddressOf()
 		{
 			return &mInputLayout;
 		}

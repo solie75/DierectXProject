@@ -9,8 +9,10 @@ namespace sh
 	void CSceneManager::Initialize()
 	{
 		mActiveScene = new CPlayScene();
-		/*mActiveScene->Initialize();*/
+		
 		mScenes.insert(std::make_pair(L"PlayScene", mActiveScene));
+
+		mActiveScene->Initialize();
 	}
 	void CSceneManager::Update()
 	{

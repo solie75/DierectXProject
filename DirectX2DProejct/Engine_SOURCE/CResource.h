@@ -8,9 +8,10 @@ namespace sh
 	private:
 		std::wstring mKey;
 		std::wstring mPath;
+		const enums::eResourceType mType;
 
 	public:
-		CResource();
+		CResource(const enums::eResourceType type);
 		virtual ~CResource();
 
 		virtual HRESULT Load(const std::wstring& path) = 0;
@@ -21,7 +22,7 @@ namespace sh
 		void SetKey(const std::wstring& key) { mKey = key; }
 		void SetPath(const std::wstring& path) { mPath = path; }
 
-		
+		enums::eResourceType GetType() { return mType; }
 	};
 }
 

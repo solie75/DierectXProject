@@ -7,6 +7,8 @@ namespace sh
 {
 	CMeshRenderer::CMeshRenderer()
 		: Component(sh::enums::eComponentType::MeshRenderer)
+		, mMesh(nullptr)
+		, mMaterial(nullptr)
 	{
 	}
 
@@ -31,9 +33,14 @@ namespace sh
 		CTransform* tr = GetOwner()->GetComponent<CTransform>();
 		tr->BindConstantBuffer();
 
-		render::RectangleMesh->BindBuffer();
-		render::shader->Binds();
-		GetDevice()->DrawIndexed(render::RectangleMesh->GetIndexCount(), 0, 0);
+		//render::RectangleMesh->BindBuffer();
+		//render::shader->Binds();
+
+		mMesh->BindBuffer();
+		mMaterial->Binds();
+
+		//GetDevice()->DrawIndexed(render::RectangleMesh->GetIndexCount(), 0, 0);
+		mMesh->Render();
 	}
 }
 

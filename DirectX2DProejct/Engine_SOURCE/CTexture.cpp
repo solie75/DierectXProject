@@ -4,6 +4,11 @@
 namespace sh::graphics
 {
 	CTexture::CTexture()
+		: CResource(enums::eResourceType::Texture)
+		, mImage{}
+		, mTexture(nullptr)
+		, mSRV(nullptr)
+		, mDesc{}
 	{
 	}
 

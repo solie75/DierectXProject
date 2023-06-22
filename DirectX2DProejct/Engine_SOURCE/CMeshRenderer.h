@@ -2,14 +2,15 @@
 #include "CComponent.h"
 #include "CMesh.h"
 #include "CShader.h"
+#include "CMaterial.h"
 
 namespace sh
 {
 	class CMeshRenderer : public Component
 	{
 	private:
-		CMesh* mMesh;
-		CShader* mShader;
+		std::shared_ptr<CMesh> mMesh;
+		std::shared_ptr<CMaterial> mMaterial;
 
 	public:
 		CMeshRenderer();
@@ -19,6 +20,9 @@ namespace sh
 		virtual void Update() override;
 		virtual void LateUpdate() override;
 		virtual void Render() override;
+
+		void SetMesh(std::shared_ptr<CMesh> mesh) { mMesh = mesh; }
+		void SetMaterial(std::shared_ptr<CMaterial> material) { mMaterial = material; }
 
 	};
 }

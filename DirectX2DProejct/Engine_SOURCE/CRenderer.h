@@ -25,12 +25,13 @@ namespace render
 	};
 
 	//extern Transform transform;
-	extern sh::CMesh* RectangleMesh;
-	extern sh::CShader* shader;
+	/*extern sh::CMesh* RectangleMesh;
+	extern sh::CShader* shader;*/
 
 	extern Vertex Vertexes[];
 
-	extern sh::graphics::CConstantBuffer* constantBuffer;
+	//extern sh::graphics::CConstantBuffer* constantBuffer;
+	extern sh::graphics::CConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	void Initialize();
 	void Update();

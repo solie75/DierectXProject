@@ -29,7 +29,8 @@ namespace sh
 	}
 	void CTransform::BindConstantBuffer()
 	{
-		CConstantBuffer* cb = render::constantBuffer;
+		//CConstantBuffer* cb = render::constantBuffer;
+		CConstantBuffer* cb = render::constantBuffer[(UINT)eCBType::Transform];
 		Vector4 pos(mPosition.x, mPosition.y, mPosition.z, 1.0f);
 		cb->SetData(&pos);
 		cb->Bind(eShaderStage::VS);

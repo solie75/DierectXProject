@@ -1,6 +1,7 @@
 #pragma once
 #include "CEntity.h"
 #include "CComponent.h"
+#include "CScript.h"
 
 namespace sh
 {
@@ -16,6 +17,7 @@ namespace sh
 	private:
 		eState mState;
 		std::vector<Component*> mComponents;
+		std::vector<CScript*> mScripts;
 
 	public:
 		CGameObject();
@@ -40,6 +42,14 @@ namespace sh
 					return component;
 				}
 			}
+			for (CScript* script : mScripts)
+			{
+				component = dynamic_cast<T*>(script);
+				if (component != nullptr)
+				{
+					return component;
+				}
+			}
 			return nullptr;
 		}
 
@@ -48,9 +58,19 @@ namespace sh
 		{
 			T* comp = new T();
 			Component* buff = dynamic_cast<Component*>(comp);
+			CScript* script = dynamic_cast<CScript*>(buff); // 이렇게 되면 모든 컴포넌트 들이 CScript 로 되어 script 변수에 저장되는것 아닌가?
+
 			if (buff == nullptr)
 			{
 				return nullptr;
+			}
+			if (script == nullptr)
+			{
+				mComponents.push_back(buff);
+			}
+			else
+			{
+				mScripts.push_back(script);
 			}
 			mComponents.push_back(buff);
 			comp->SetOwner(this);

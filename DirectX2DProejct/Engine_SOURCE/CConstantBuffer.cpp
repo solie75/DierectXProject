@@ -22,7 +22,7 @@ namespace sh::graphics
 
         sh::graphics::GetDevice()->CreateBuffer(buffer.GetAddressOf(), &desc, nullptr);
 
-        return false;
+        return true;
     }
 
     void CConstantBuffer::SetData(void* data)

@@ -22,7 +22,10 @@ namespace sh
 		mr->SetMesh(CResources::Find<CMesh>(L"RectMesh"));
 		mr->SetMaterial(CResources::Find<CMaterial>(L"SpriteMaterial"));
 
-		player->AddComponent<CCameraScript>();
+		//player->AddComponent<CCameraScript>();
+
+		CTransform* tr = player->GetComponent<CTransform>();
+		tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));
 	}
 	void CPlayScene::Update()
 	{

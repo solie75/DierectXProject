@@ -6,6 +6,7 @@
 #include "CConstantBuffer.h"
 
 using namespace sh::math;
+using namespace sh::graphics;
 namespace render
 {
 
@@ -17,11 +18,18 @@ namespace render
 		Vector2 uv;
 	};
 
-	struct Transform
+	//struct Transform
+	//{
+	//	Vector4 pos;
+	//	Vector4 scale;
+	//	Vector4 color;
+	//};
+
+	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
 	{
-		Vector4 pos;
-		Vector4 scale;
-		Vector4 color;
+		Matrix mWorld;
+		Matrix mView;
+		Matrix mProjection;
 	};
 
 	//extern Transform transform;
@@ -34,7 +42,7 @@ namespace render
 	extern sh::graphics::CConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	void Initialize();
-	void Update();
+	//void Update();
 	void Release();
 }
 

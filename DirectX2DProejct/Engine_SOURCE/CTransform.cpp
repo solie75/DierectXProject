@@ -19,9 +19,29 @@ namespace sh
 	}
 	void CTransform::Update()
 	{
+		// 크기, 회전, 이동 의 변경
+
 	}
 	void CTransform::LateUpdate()
 	{
+		// update 에서 변경된 내용으로 월드 변환 행렬을 생성
+		mWorld = Matrix::Identity;
+
+		Matrix scale = Matrix::CreateScale(mScale);
+
+		Matrix rotation;
+		rotation = Matrix::CreateRotationX(mRotation.x);
+		rotation *= Matrix::CreateRotationY(mRotation.y);
+		rotation *= Matrix::CreateRotationZ(mRotation.z);
+
+		Matrix position;
+		position.Translation(mPosition);
+
+		mWorld = scale * rotation * position;
+
+		mUp = Vector3::TransformNormal(Vector3::Up, rotation);
+		mForward = Vector3::TransformNormal(Vector3::Forward, rotation);
+		mRight = Vector3::TransformNormal(Vector3::Right, rotation);
 	}
 	void CTransform::Render()
 	{
@@ -29,10 +49,14 @@ namespace sh
 	}
 	void CTransform::BindConstantBuffer()
 	{
-		//CConstantBuffer* cb = render::constantBuffer;
+		render::TransformCB trCB = {};
+		trCB.mWorld = mWorld;
+
+		//trCB.mView = mWorld;
+		//trCB.mProjection = mWorld;
+
 		CConstantBuffer* cb = render::constantBuffer[(UINT)eCBType::Transform];
-		Vector4 pos(mPosition.x, mPosition.y, mPosition.z, 1.0f);
-		cb->SetData(&pos);
+		cb->SetData(&trCB);
 		cb->Bind(eShaderStage::VS);
 	}
 }

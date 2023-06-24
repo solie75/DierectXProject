@@ -5,6 +5,7 @@
 namespace sh
 {
 	using namespace sh::enums;
+	using namespace sh::math;
 	class CGameObject;
 	class Component : public CEntity
 	{

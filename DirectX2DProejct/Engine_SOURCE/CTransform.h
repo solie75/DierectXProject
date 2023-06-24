@@ -9,9 +9,18 @@ namespace sh
 		public Component
 	{
 	private:
+		// 월드 변환 행렬
+		Matrix mWorld;
+
+		// 월드 변환의 요소
 		Vector3 mPosition;
 		Vector3 mRotation;
 		Vector3 mScale;
+
+		// 각 물체가 가지는 자신의 방향 벡터
+		Vector3 mUp;
+		Vector3 mRight;
+		Vector3 mForward;
 		
 	public:
 		CTransform();
@@ -35,6 +44,10 @@ namespace sh
 		Vector3 GetPosition() { return mPosition; }
 		Vector3 GetRotation() { return mRotation; }
 		Vector3 GetScale() { return mScale; }
+
+		Vector3 Forward() { return mForward; }
+		Vector3 Right() { return mRight; }
+		Vector3 Up() { return mUp; }
 	};
 
 

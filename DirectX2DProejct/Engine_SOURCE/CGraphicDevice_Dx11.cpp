@@ -72,7 +72,7 @@ namespace sh::graphics
 
 		BindViewPort(&mViewPort);
 
-		//mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 	}
 
 	CGraphicDevice_Dx11::~CGraphicDevice_Dx11()

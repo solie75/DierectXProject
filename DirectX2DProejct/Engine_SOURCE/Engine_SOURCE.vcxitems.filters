@@ -125,6 +125,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CCameraScript.h">
       <Filter>GameObject\Component\CScript</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp">
@@ -195,6 +196,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CCameraScript.cpp">
       <Filter>GameObject\Component\CScript</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CMath.inl">

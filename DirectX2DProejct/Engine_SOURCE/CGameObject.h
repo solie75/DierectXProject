@@ -72,7 +72,7 @@ namespace sh
 			{
 				mScripts.push_back(script);
 			}
-			mComponents.push_back(buff);
+			//mComponents.push_back(buff);
 			comp->SetOwner(this);
 
 			return comp;

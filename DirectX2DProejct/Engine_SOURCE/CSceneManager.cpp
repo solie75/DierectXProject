@@ -50,6 +50,5 @@ namespace sh
 		mActiveScene->OnEnter();
 
 		return iter->second;
-		return nullptr;
 	}
 }

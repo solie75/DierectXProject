@@ -7,8 +7,8 @@ namespace sh
 {
 	CMeshRenderer::CMeshRenderer()
 		: Component(sh::enums::eComponentType::MeshRenderer)
-		, mMesh(nullptr)
-		, mMaterial(nullptr)
+		//, mMesh(nullptr)
+		//, mMaterial(nullptr)
 	{
 	}
 

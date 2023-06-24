@@ -92,14 +92,9 @@ namespace render
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 
-		/*constantBuffer = new sh::graphics::CConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Transform));*/
-		constantBuffer[(UINT)eCBType::Transform] = new sh::graphics::CConstantBuffer(eCBType::Transform);
-		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(Transform));
+		constantBuffer[(UINT)eCBType::Transform] = new CConstantBuffer(eCBType::Transform);
+		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));
 
-		/*Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
-		constantBuffer->SetData(&pos);
-		constantBuffer->Bind(eShaderStage::VS);*/
 	}
 
 	void LoadShader()
@@ -112,20 +107,21 @@ namespace render
 
 
 
-		std::shared_ptr<CShader> spliteShader = std::make_shared<CShader>();
-		spliteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
-		spliteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
-		CResources::Insert(L"SpriteShader", spliteShader);
+		std::shared_ptr<CShader> spriteShader = std::make_shared<CShader>();
+		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
+		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
+		CResources::Insert(L"SpriteShader", spriteShader);
 		
-		std::shared_ptr<CTexture> texture = CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
-		texture->BindShader(eShaderStage::PS, 0);
+		std::shared_ptr<CTexture> texture 
+			= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
+		//texture->BindShader(eShaderStage::PS, 0);
 
 		std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
-		spriteMaterial->SetShader(spliteShader);
+		spriteMaterial->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
 		spriteMaterial->SetTexture(texture);
 		CResources::Insert(L"SpriteMaterial", spriteMaterial);
 
-
+		texture->BindShader(eShaderStage::PS, 0);
 	}
 
 	void Initialize()
@@ -151,15 +147,13 @@ namespace render
 		LoadShader();
 		SetupState();
 
-		/*CTexture* texture
-			= CResources::Load<CTexture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
-		texture = CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
-		texture->BindShader(eShaderStage::PS, 0);*/
+		//std::shared_ptr<CTexture> texture = CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
+		
 	}
 
-	void Update()
-	{
-	}
+	//void Update()
+	//{
+	//}
 	void Release()
 	{
 		/*delete mesh;

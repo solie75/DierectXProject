@@ -56,4 +56,16 @@ namespace sh::graphics
 		GetDevice()->BindShaderResource(stage, startSlot, mSRV.GetAddressOf());
 	}
 
+	void graphics::CTexture::Clear()
+	{
+		ID3D11ShaderResourceView* srv = nullptr;
+
+		GetDevice()->BindShaderResource(eShaderStage::VS, 0, &srv);
+		GetDevice()->BindShaderResource(eShaderStage::DS, 0, &srv);
+		GetDevice()->BindShaderResource(eShaderStage::GS, 0, &srv);
+		GetDevice()->BindShaderResource(eShaderStage::HS, 0, &srv);
+		GetDevice()->BindShaderResource(eShaderStage::CS, 0, &srv);
+		GetDevice()->BindShaderResource(eShaderStage::PS, 0, &srv);
+	}
+
 }

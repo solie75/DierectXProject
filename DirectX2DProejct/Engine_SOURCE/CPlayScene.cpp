@@ -4,6 +4,7 @@
 #include "CTransform.h"
 #include "CResources.h"
 #include "CCameraScript.h"
+#include "CCamera.h"
 
 namespace sh
 {
@@ -21,16 +22,23 @@ namespace sh
 		CMeshRenderer* mr = player->AddComponent<CMeshRenderer>();
 		mr->SetMesh(CResources::Find<CMesh>(L"RectMesh"));
 		mr->SetMaterial(CResources::Find<CMaterial>(L"SpriteMaterial"));
-
+		player->GetComponent<CTransform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 		//player->AddComponent<CCameraScript>();
 
-		CTransform* tr = player->GetComponent<CTransform>();
-		tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));
+		/*CTransform* tr = player->GetComponent<CTransform>();
+		tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));*/
+
+		// Main Camera
+		CGameObject* camera = new CGameObject();
+		AddGameObject(eLayerType::Player, camera);
+		camera->GetComponent<CTransform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
+		CCamera* cameraComp = camera->AddComponent<CCamera>();
+		camera->AddComponent<CCameraScript>();
+
 	}
 	void CPlayScene::Update()
 	{
-		CScene::Update();
-	}
+		CScene::Update();	}
 	void CPlayScene::LateUpdate()
 	{
 		CScene::LateUpdate();

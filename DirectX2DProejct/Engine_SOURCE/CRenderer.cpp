@@ -114,7 +114,6 @@ namespace render
 		
 		std::shared_ptr<CTexture> texture 
 			= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
-		//texture->BindShader(eShaderStage::PS, 0);
 
 		std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
 		spriteMaterial->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?

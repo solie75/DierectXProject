@@ -1,6 +1,7 @@
 #include "CTransform.h"
 #include "CRenderer.h"
 #include "CConstantBuffer.h"
+#include "CCamera.h"
 
 namespace sh
 {
@@ -51,9 +52,8 @@ namespace sh
 	{
 		render::TransformCB trCB = {};
 		trCB.mWorld = mWorld;
-
-		//trCB.mView = mWorld;
-		//trCB.mProjection = mWorld;
+		trCB.mView = CCamera::GetViewMatrix();
+		trCB.mProjection = CCamera::GetProjectionMatrix();
 
 		CConstantBuffer* cb = render::constantBuffer[(UINT)eCBType::Transform];
 		cb->SetData(&trCB);

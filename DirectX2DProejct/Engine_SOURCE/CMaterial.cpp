@@ -20,4 +20,8 @@ namespace sh::graphics
 		mTexture->BindShader(eShaderStage::PS, 0);
 		mShader->Binds();
 	}
+	void CMaterial::Clear()
+	{
+		mTexture->Clear();
+	}
 }

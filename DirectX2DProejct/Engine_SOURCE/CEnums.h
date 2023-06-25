@@ -10,6 +10,7 @@ namespace sh::enums
 		MeshRenderer,
 		Particle,
 		Script,
+		Camera,
 		End,
 	};
 

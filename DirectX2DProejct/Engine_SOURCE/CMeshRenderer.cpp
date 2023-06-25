@@ -41,6 +41,8 @@ namespace sh
 
 		//GetDevice()->DrawIndexed(render::RectangleMesh->GetIndexCount(), 0, 0);
 		mMesh->Render();
+
+		mMaterial->Clear();
 	}
 }
 

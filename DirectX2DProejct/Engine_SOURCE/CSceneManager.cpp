@@ -1,5 +1,8 @@
 #include "CSceneManager.h"
 #include "CPlayScene.h"
+#include "CStartMenuScene.h"
+#include "CVillageScene.h"
+#include "CShopScene.h"
 
 namespace sh
 {
@@ -8,9 +11,15 @@ namespace sh
 
 	void CSceneManager::Initialize()
 	{
-		mActiveScene = new CPlayScene();
 		
-		mScenes.insert(std::make_pair(L"PlayScene", mActiveScene));
+		mScenes.insert(std::make_pair(L"PlayScene", new CPlayScene()));
+		mScenes.insert(std::make_pair(L"StartMenuScene", new CStartMenuScene));
+		mScenes.insert(std::make_pair(L"VillageScene", new CVillageScene));
+		mScenes.insert(std::make_pair(L"ShopScene", new CShopScene));
+
+		//mActiveScene = mScenes.find(L"StartMenuScene")->second;
+		mActiveScene = mScenes.find(L"VillageScene")->second;
+		//mActiveScene = mScenes.find(L"ShopScene")->second;
 
 		mActiveScene->Initialize();
 	}

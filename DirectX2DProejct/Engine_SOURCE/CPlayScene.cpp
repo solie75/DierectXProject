@@ -22,11 +22,8 @@ namespace sh
 		CMeshRenderer* mr = player->AddComponent<CMeshRenderer>();
 		mr->SetMesh(CResources::Find<CMesh>(L"RectMesh"));
 		mr->SetMaterial(CResources::Find<CMaterial>(L"SpriteMaterial"));
-		player->GetComponent<CTransform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-		//player->AddComponent<CCameraScript>();
-
-		/*CTransform* tr = player->GetComponent<CTransform>();
-		tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));*/
+		player->GetComponent<CTransform>()->SetPosition(Vector3(-2.f, 0.0f, 0.0f));
+		player->GetComponent<CTransform>()->SetScale(Vector3(4.0f, 5.0f, 0.0f));
 
 		// Main Camera
 		CGameObject* camera = new CGameObject();
@@ -38,7 +35,8 @@ namespace sh
 	}
 	void CPlayScene::Update()
 	{
-		CScene::Update();	}
+		CScene::Update();
+	}
 	void CPlayScene::LateUpdate()
 	{
 		CScene::LateUpdate();

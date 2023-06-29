@@ -18,8 +18,8 @@ namespace sh
 		mScenes.insert(std::make_pair(L"ShopScene", new CShopScene));
 
 		//mActiveScene = mScenes.find(L"StartMenuScene")->second;
-		mActiveScene = mScenes.find(L"VillageScene")->second;
-		//mActiveScene = mScenes.find(L"ShopScene")->second;
+		//mActiveScene = mScenes.find(L"VillageScene")->second;
+		mActiveScene = mScenes.find(L"ShopScene")->second;
 
 		mActiveScene->Initialize();
 	}

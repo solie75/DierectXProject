@@ -22,7 +22,11 @@ namespace sh::graphics
 		bool CreatePixelShader(const void* pShaderByteCode, SIZE_T BytecodeLength, ID3D11PixelShader** ppPixelShader);
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDesc
 			, UINT NumElement, ID3DBlob* byteCode, ID3D11InputLayout** ppInputLayout);
-		bool CreateSampler(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState);
+		bool CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState);
+
+		bool CreateRasterizerState(const D3D11_RASTERIZER_DESC* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState);
+		bool CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState);
+		bool CreateBlendState(const D3D11_BLEND_DESC* pBlendDesc, ID3D11BlendState** ppBlendState);
 		
 		void BindViewPort(D3D11_VIEWPORT* viewPort);
 		void BindVertexBuffer(UINT StartSlot, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
@@ -40,6 +44,11 @@ namespace sh::graphics
 		void BindPixelShader(ID3D11PixelShader* pPixelShader);
 		void BindShaderResource(eShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** ppSRV);
 		void BindSampler(eShaderStage stage, UINT StartSlot, ID3D11SamplerState** ppSamplerState);
+		void BindRasterizerState(ID3D11RasterizerState* pRasterizerState);
+		void BindDepthStencilState(ID3D11DepthStencilState* pDepthStencilState);
+		void BindBlendState(ID3D11BlendState* pBlendState);
+
+
 
 		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, int BaseVertexLocation);
 		void ClearTarget();

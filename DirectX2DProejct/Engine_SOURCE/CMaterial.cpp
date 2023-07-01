@@ -6,6 +6,7 @@ namespace sh::graphics
 		: CResource(sh::enums::eResourceType::Material)
 		, mShader(nullptr)
 		, mTexture(nullptr)
+		, mRenderingMode(eRenderingMode::Opaque)
 	{
 	}
 	CMaterial::~CMaterial()

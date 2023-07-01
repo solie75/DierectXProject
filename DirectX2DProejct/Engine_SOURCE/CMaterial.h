@@ -12,6 +12,8 @@ namespace sh::graphics
 		std::shared_ptr<CShader> mShader;
 		std::shared_ptr<CTexture> mTexture;
 
+		eRenderingMode mRenderingMode;
+
 	public:
 		CMaterial();
 		~CMaterial();
@@ -23,5 +25,8 @@ namespace sh::graphics
 
 		void SetShader(std::shared_ptr<CShader> shader) { mShader = shader; }
 		void SetTexture(std::shared_ptr<CTexture> texture) { mTexture = texture; }
+
+		void SetRenderingMode(eRenderingMode mode) { mRenderingMode = mode; }
+		eRenderingMode GetRenderingMode() { return mRenderingMode; }
 	};
 }

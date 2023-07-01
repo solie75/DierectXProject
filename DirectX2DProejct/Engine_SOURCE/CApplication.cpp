@@ -52,6 +52,7 @@ namespace sh
 		graphicDevice->UpdateViewPort();
 		CSceneManager::Render();
 
+		//render::Render();
 		//graphicDevice->Draw();
 		//mScene->Render();
 		graphicDevice->Present();

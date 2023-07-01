@@ -25,6 +25,11 @@ namespace sh
 		float mFar;
 		float mSize;
 
+		std::bitset<(UINT)eLayerType::End>mLayerMask;
+		std::vector<CGameObject*>mOpaqueGameObjects; // 불투명한 고체물질
+		std::vector<CGameObject*>mCutOutGameObjects; // Alpha 를 이용한 투명도 표현
+		std::vector<CGameObject*>mTransparentGameObjects; // 투명한 물체
+
 	public:
 		CCamera();
 		~CCamera();
@@ -39,5 +44,17 @@ namespace sh
 
 		bool CreateViewMatrix();
 		bool CreateProjectionMatrix(eProjectionType type);
+
+		void TurnLayerMask(eLayerType type, bool enable = true);
+		void EnableLayerMasks() { mLayerMask.set(); }
+		void DisableLayerMasks() { mLayerMask.reset(); }
+
+		void RenderOpaque();
+		void RenderCutOut();
+		void RenderTransparent();
+
+		void RegisterCameraInRenderer();
+
+		void SortGameObjects();
 	};
 }

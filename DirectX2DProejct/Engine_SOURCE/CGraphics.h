@@ -64,6 +64,14 @@ enum class eBSType
 	End,
 };
 
+enum class eRenderingMode
+{
+	Opaque, // 불투명 : 일반적인 불투명한 고체 물질을 표현
+	CutOut, // 컷아웃 : Alpha 를 이용한 투명, 불투명을 표현함 (철창, 너덜너덜한 잎, 천 등을 표현)
+	Trnasparent, // 투명 : 빛이 반사되는 투명함을 포현함 (유리)
+	End,
+};
+
 
 
 struct GpuBuffer

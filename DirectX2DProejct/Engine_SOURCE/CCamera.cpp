@@ -18,6 +18,10 @@ namespace sh
         , mNear(1.0f)
         , mFar(1000.0f)
         , mSize(5.0f)
+        , mLayerMask{}
+        , mOpaqueGameObjects{}
+        , mCutOutGameObjects{}
+        , mTransparentGameObjects{}
     {
     }
     CCamera::~CCamera()
@@ -25,6 +29,7 @@ namespace sh
     }
     void CCamera::Initialize()
     {
+        EnableLayerMasks();
     }
     void CCamera::Update()
     {
@@ -33,9 +38,15 @@ namespace sh
     {
         CreateViewMatrix();
         CreateProjectionMatrix(mType);
+        RegisterCameraInRenderer();
     }
     void CCamera::Render()
     {
+        SortGameObjects();
+
+        RenderOpaque();
+        RenderCutOut();
+        RenderTransparent();
     }
     bool CCamera::CreateViewMatrix()
     {
@@ -83,5 +94,49 @@ namespace sh
     
 
         return true;
+    }
+    void CCamera::TurnLayerMask(eLayerType type, bool enable)
+    {
+        mLayerMask.set((UINT)type, enable);
+    }
+    void CCamera::RenderOpaque()
+    {
+        for (CGameObject* gameObj : mOpaqueGameObjects)
+        {
+            if (gameObj == nullptr)
+            {
+                continue;
+            }
+            gameObj->Render();
+        }
+    }
+    void CCamera::RenderCutOut()
+    {
+        for (CGameObject* gameObj : mCutOutGameObjects)
+        {
+            if (gameObj == nullptr)
+            {
+                continue;
+            }
+            gameObj->Render();
+        }
+    }
+    void CCamera::RenderTransparent()
+    {
+        for (CGameObject* gameObj : mTransparentGameObjects)
+        {
+            if (gameObj == nullptr)
+            {
+                continue;
+            }
+            gameObj->Render();
+        }
+    }
+    void CCamera::RegisterCameraInRenderer()
+    {
+        render::cameras.push_back(this); // 여기에서 this 는 무엇인가
+    }
+    void CCamera::SortGameObjects()
+    {
     }
 }

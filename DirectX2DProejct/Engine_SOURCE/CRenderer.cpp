@@ -205,7 +205,7 @@ namespace render
 		//	= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
 		{
 			std::shared_ptr<CTexture> texture0
-				= CResources::Load<CTexture>(L"Start_Intro_Door_Left", L"..\\Resources\\Texture\\Link.png");
+				= CResources::Load<CTexture>(L"Start_Intro_Door_Left", L"..\\Resources\\Texture\\dokgak.png");
 
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
 			spriteMaterial->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
@@ -292,6 +292,8 @@ namespace render
 
 			cam->Render();
 		}
+
+		cameras.clear(); // 왜 clear 해주는 거지?
 	}
 
 	void Release()

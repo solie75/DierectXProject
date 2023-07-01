@@ -22,5 +22,24 @@ namespace sh
 		virtual void OnExit();
 
 		void AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj);
+
+		/*template <typename T>
+		std::vector<T*> FindObjectsOfType()
+		{
+			std::vector<T*> findObjs = {};
+			for (Layer* layer : mLayers)
+			{
+				auto gameObjs = layer->GetGameObjects();
+				for (CGameObject* obj : gameObjs)
+				{
+					T* buff = dynamic_cast<T*>(obj);
+					if (buff != nullptr)
+					{
+						findObjs.push_back(buff);
+					}
+				}
+			}
+		}*/
+		//CLayer& GetLayer(eLayerType type) { return mLayers[(UINT)type]; }
 	};
 }

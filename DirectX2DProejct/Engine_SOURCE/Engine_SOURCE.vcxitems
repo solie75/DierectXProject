@@ -18,7 +18,6 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CCameraScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CEngine.h" />
@@ -33,7 +32,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CMeshRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CPlayScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CScene.h" />
@@ -52,7 +50,6 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CCameraScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CEntity.cpp" />
@@ -63,7 +60,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CMeshRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CPlayScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CScene.cpp" />

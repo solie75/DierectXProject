@@ -102,9 +102,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CLayer.h">
       <Filter>Scene\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CPlayScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CMeshRenderer.h">
       <Filter>GameObject\Component</Filter>
     </ClInclude>
@@ -122,9 +119,6 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CMaterial.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CCameraScript.h">
-      <Filter>GameObject\Component\CScript</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CStartMenuScene.h">
       <Filter>Scene</Filter>
@@ -182,9 +176,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CLayer.cpp">
       <Filter>Scene\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CPlayScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CMeshRenderer.cpp">
       <Filter>GameObject\Component</Filter>
     </ClCompile>
@@ -202,9 +193,6 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CMaterial.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CCameraScript.cpp">
-      <Filter>GameObject\Component\CScript</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CStartMenuScene.cpp">
       <Filter>Scene</Filter>

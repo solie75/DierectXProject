@@ -12,16 +12,16 @@ namespace sh
 	void CSceneManager::Initialize()
 	{
 		
-		mScenes.insert(std::make_pair(L"PlayScene", new CPlayScene()));
-		mScenes.insert(std::make_pair(L"StartMenuScene", new CStartMenuScene));
-		mScenes.insert(std::make_pair(L"VillageScene", new CVillageScene));
-		mScenes.insert(std::make_pair(L"ShopScene", new CShopScene));
+		//mScenes.insert(std::make_pair(L"PlayScene", new CPlayScene()));
+		//mScenes.insert(std::make_pair(L"StartMenuScene", new CStartMenuScene));
+		//mScenes.insert(std::make_pair(L"VillageScene", new CVillageScene));
+		//mScenes.insert(std::make_pair(L"ShopScene", new CShopScene));
 
-		//mActiveScene = mScenes.find(L"StartMenuScene")->second;
-		//mActiveScene = mScenes.find(L"VillageScene")->second;
-		mActiveScene = mScenes.find(L"ShopScene")->second;
+		////mActiveScene = mScenes.find(L"StartMenuScene")->second;
+		////mActiveScene = mScenes.find(L"VillageScene")->second;
+		//mActiveScene = mScenes.find(L"ShopScene")->second;
 
-		mActiveScene->Initialize();
+		//mActiveScene->Initialize();
 	}
 	void CSceneManager::Update()
 	{
@@ -38,7 +38,7 @@ namespace sh
 
 	void CSceneManager::Release()
 	{
-		for (auto iter : mScenes)
+		for (auto& iter : mScenes)
 		{
 			delete iter.second;
 			iter.second = nullptr;

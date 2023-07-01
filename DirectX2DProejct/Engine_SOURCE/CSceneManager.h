@@ -17,6 +17,24 @@ namespace sh
 
 		static CScene* GetActiveScene() { return mActiveScene; }
 		static CScene* LoadScene(std::wstring name);
+
+		template <typename T>
+		static bool CreateScene(std::wstring name)
+		{
+			T* scene = new T();
+
+			std::map<std::wstring, CScene*>::iterator iter = mScenes.find(name);
+
+			if (iter != mScenes.end())
+			{
+				return false;
+			}
+
+			mScenes.insert(std::make_pair(name, scene));
+			mActiveScene = scene;
+			scene->Initialize();
+			return true;
+		}
 	};
 }
 

@@ -17,8 +17,15 @@ namespace sh::graphics
 	}
 	void CMaterial::Binds()
 	{
-		mTexture->BindShader(eShaderStage::PS, 0);
-		mShader->Binds();
+		if (mTexture)
+		{
+			mTexture->BindShader(eShaderStage::PS, 0);
+		}
+		if (mShader)
+		{
+			mShader->Binds();
+		}
+		
 	}
 	void CMaterial::Clear()
 	{

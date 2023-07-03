@@ -39,7 +39,8 @@ namespace sh
 					}
 				}
 			}
+			return findObjs;
 		}*/
-		//CLayer& GetLayer(eLayerType type) { return mLayers[(UINT)type]; }
+		CLayer& GetLayer(eLayerType type) { return mLayers[(UINT)type]; }
 	};
 }

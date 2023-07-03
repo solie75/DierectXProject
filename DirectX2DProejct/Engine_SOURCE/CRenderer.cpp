@@ -204,8 +204,19 @@ namespace render
 		//std::shared_ptr<CTexture> texture 
 		//	= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
 		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
+
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
+			spriteMaterial->SetTexture(texture);
+			CResources::Insert(L"SpriteMaterial0", spriteMaterial);
+
+			texture->BindShader(eShaderStage::PS, 0);
+		}
+		{
 			std::shared_ptr<CTexture> texture0
-				= CResources::Load<CTexture>(L"Start_Intro_Door_Left", L"..\\Resources\\Texture\\dokgak.png");
+				= CResources::Load<CTexture>(L"dokgak", L"..\\Resources\\Texture\\dokgak.png");
 
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
 			spriteMaterial->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
@@ -254,6 +265,17 @@ namespace render
 			spriteMaterial4->SetTexture(texture4);
 			CResources::Insert(L"SpriteMaterial4", spriteMaterial4);
 			texture4->BindShader(eShaderStage::PS, 0);
+		}
+		{
+			std::shared_ptr<CTexture> texture5
+				= CResources::Load<CTexture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
+
+			std::shared_ptr<CMaterial> spriteMaterial5 = std::make_shared<CMaterial>();
+			spriteMaterial5->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
+			spriteMaterial5->SetTexture(texture5);
+			spriteMaterial5->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial5", spriteMaterial5);
+			texture5->BindShader(eShaderStage::PS, 0);
 		}
 	}
 

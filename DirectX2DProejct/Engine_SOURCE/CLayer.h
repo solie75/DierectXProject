@@ -15,6 +15,10 @@ namespace sh
 		virtual void Render();
 
 		void AddGameObject(CGameObject* gameObj);
+		const std::vector<CGameObject*> GetGameObjects()
+		{
+			return mGameObjects;
+		}
 
 	private:
 		std::vector<CGameObject*> mGameObjects;

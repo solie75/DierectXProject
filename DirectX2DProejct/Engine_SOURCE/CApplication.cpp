@@ -50,9 +50,9 @@ namespace sh
 
 		graphicDevice->ClearTarget();
 		graphicDevice->UpdateViewPort();
-		CSceneManager::Render();
+		//CSceneManager::Render();
 
-		//render::Render();
+		render::Render();
 		//graphicDevice->Draw();
 		//mScene->Render();
 		graphicDevice->Present();

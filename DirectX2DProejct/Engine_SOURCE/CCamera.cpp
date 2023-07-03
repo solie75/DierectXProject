@@ -2,13 +2,15 @@
 #include "CTransform.h"
 #include "CGameObject.h"
 #include "CApplication.h"
+#include "CSceneManager.h"
+#include "CMeshRenderer.h"
 
 extern sh::CApplication application;
 
 namespace sh
 {
-    Matrix CCamera::mView = Matrix::Identity;
-    Matrix CCamera::mProjection = Matrix::Identity;
+    Matrix CCamera::View = Matrix::Identity;
+    Matrix CCamera::Projection = Matrix::Identity;
 
     CCamera::CCamera()
         : Component(eComponentType::Camera)
@@ -22,14 +24,17 @@ namespace sh
         , mOpaqueGameObjects{}
         , mCutOutGameObjects{}
         , mTransparentGameObjects{}
+        , mView(Matrix::Identity)
+        , mProjection(Matrix::Identity)
     {
+        EnableLayerMasks();
     }
     CCamera::~CCamera()
     {
     }
     void CCamera::Initialize()
     {
-        EnableLayerMasks();
+
     }
     void CCamera::Update()
     {
@@ -42,6 +47,9 @@ namespace sh
     }
     void CCamera::Render()
     {
+        View = mView;
+        Projection = mProjection;
+
         SortGameObjects();
 
         RenderOpaque();
@@ -138,5 +146,48 @@ namespace sh
     }
     void CCamera::SortGameObjects()
     {
+        mOpaqueGameObjects.clear();
+        mCutOutGameObjects.clear();
+        mTransparentGameObjects.clear();
+
+        CScene* scene = CSceneManager::GetActiveScene();
+        for (size_t i = 0; i < (UINT)eLayerType::End; i++)
+        {
+            // 활성화 된 레이어의 모든 게임 오브젝트를 renderingMode 에 따라 분류한다.
+            if (mLayerMask[i] == true)
+            {
+                CLayer& layer = scene->GetLayer((eLayerType)i);
+                // layer에 있는 게임 오브젝트를 가져온다.
+                const std::vector<CGameObject*> gameObjs = layer.GetGameObjects();
+                
+                for (CGameObject* obj : gameObjs)
+                {
+                    CMeshRenderer* mr = obj->GetComponent<CMeshRenderer>();
+                    if (mr == nullptr)
+                    {
+                        continue;
+                    }
+
+                    std::shared_ptr<CMaterial> mt = mr->GetMaterial();
+                    eRenderingMode mode = mt->GetRenderingMode();
+
+                    switch (mode)
+                    {
+                    case sh::graphics::eRenderingMode::Opaque :
+                        mOpaqueGameObjects.push_back(obj);
+                        break;
+                    case sh::graphics::eRenderingMode::CutOut :
+                        mCutOutGameObjects.push_back(obj);
+                        break;
+                    case sh::graphics::eRenderingMode::Transparent:
+                        mTransparentGameObjects.push_back(obj);
+                        break;
+                    default :
+                        break;
+                    }
+                }
+            }
+        }
+
     }
 }

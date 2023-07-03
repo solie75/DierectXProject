@@ -13,7 +13,7 @@ namespace sh
 		CEntity();
 		virtual ~CEntity();
 
-		void SetName(const std::wstring& name);
+		void SetName(const std::wstring& name) { mName = name; }
 		std::wstring& GetName() { return mName; }
 		void SetID(UINT64 id) { mID = id; }
 		UINT64 GetID() { return mID; }

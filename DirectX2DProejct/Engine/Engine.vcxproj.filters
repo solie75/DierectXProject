@@ -3,33 +3,36 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="..\Engine_SOURCE\CCameraScript.h">
-      <Filter>Script</Filter>
+      <Filter>Contents\Script</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine_SOURCE\CPlayScene.h">
-      <Filter>Scene</Filter>
+      <Filter>Contents\Scene</Filter>
     </ClInclude>
     <ClInclude Include="LoadScenes.h">
-      <Filter>Load</Filter>
+      <Filter>Contents\Load</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="..\Engine_SOURCE\CCameraScript.cpp">
-      <Filter>Script</Filter>
+      <Filter>Contents\Script</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_SOURCE\CPlayScene.cpp">
-      <Filter>Scene</Filter>
+      <Filter>Contents\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Load">
-      <UniqueIdentifier>{d829d3b7-0a5f-48d2-9b99-e6e763da38fd}</UniqueIdentifier>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{015e6412-d785-444d-a536-2e5a42cded44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
+    <Filter Include="Contents\Scene">
       <UniqueIdentifier>{1d56593e-7574-4756-9980-d9aeb5bf670c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Script">
+    <Filter Include="Contents\Script">
       <UniqueIdentifier>{19fdfe91-ab31-4f17-bbba-f8a3d064a6e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Load">
+      <UniqueIdentifier>{d829d3b7-0a5f-48d2-9b99-e6e763da38fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

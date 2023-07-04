@@ -1,4 +1,4 @@
-﻿  CRenderer.cpp
+﻿  CShopScene.cpp
 D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
   Engine.vcxproj -> D:\신중은\DierectXProject\DirectX2DProejct\x64\Debug\Engine_d.lib

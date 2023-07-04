@@ -8,6 +8,7 @@
 
 #include "CSceneManager.h"
 #include "CVillageScene.h"
+#include "CShopScene.h"
 #include "CPlayScene.h"
 
 
@@ -18,7 +19,7 @@ namespace sh
 	{
 		//CSceneManager::CreateScene<CPlayScene>(L"PlayScene");
 		//CSceneManager::CreateScene<CPlayScene>(L"StartMenuScene");
-		CSceneManager::CreateScene<CVillageScene>(L"VillageScene");
-		//CSceneManager::CreateScene<CPlayScene>(L"ShopScene");
+		//CSceneManager::CreateScene<CVillageScene>(L"VillageScene");
+		CSceneManager::CreateScene<CPlayScene>(L"ShopScene");
 	}
 }

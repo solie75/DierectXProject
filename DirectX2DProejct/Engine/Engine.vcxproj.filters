@@ -14,6 +14,9 @@
     <ClInclude Include="..\Engine_SOURCE\CVillageScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine_SOURCE\CShopScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -24,6 +27,9 @@
       <Filter>Contents\Scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_SOURCE\CVillageScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_SOURCE\CShopScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
   </ItemGroup>

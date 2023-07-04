@@ -38,7 +38,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CShader.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CShopScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CStartMenuScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CTime.h" />
@@ -65,7 +64,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CShader.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CShopScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CStartMenuScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CTime.cpp" />

@@ -149,12 +149,14 @@
   <ItemGroup>
     <ClInclude Include="..\Engine_SOURCE\CCameraScript.h" />
     <ClInclude Include="..\Engine_SOURCE\CPlayScene.h" />
+    <ClInclude Include="..\Engine_SOURCE\CVillageScene.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LoadScenes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine_SOURCE\CCameraScript.cpp" />
     <ClCompile Include="..\Engine_SOURCE\CPlayScene.cpp" />
+    <ClCompile Include="..\Engine_SOURCE\CVillageScene.cpp" />
     <ClCompile Include="Engine.cpp" />
   </ItemGroup>
   <ItemGroup>

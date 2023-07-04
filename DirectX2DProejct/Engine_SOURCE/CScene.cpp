@@ -44,8 +44,9 @@ namespace sh
 	void CScene::OnExit()
 	{
 	}
-	void CScene::AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj)
+	void CScene::AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj, const std::wstring& name)
 	{
+		gameObj->SetName(name);
 		mLayers[(int)type].AddGameObject(gameObj);
 	}
 }

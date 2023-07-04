@@ -21,6 +21,8 @@ namespace sh
 		Vector3 mUp;
 		Vector3 mRight;
 		Vector3 mForward;
+
+		CTransform* mParent;
 		
 	public:
 		CTransform();
@@ -48,7 +50,8 @@ namespace sh
 		Vector3 Forward() { return mForward; }
 		Vector3 Right() { return mRight; }
 		Vector3 Up() { return mUp; }
+
+		void SetParent(CTransform* transform) { mParent = transform; }
+		CTransform* GetParent() { return mParent; }
 	};
-
-
 }

@@ -58,6 +58,14 @@ namespace sh
 
 		void RegisterCameraInRenderer();
 
-		void SortGameObjects();
+		//void SortGameObjects();
+		//bool CompareZSort(CGameObject* a, CGameObject* b);
+
+		void AlphaSortGameObjects();
+		void ZSortTransparencyGameObjects();
+		void DivideAlphaBlendGameObjects(const std::vector<CGameObject*>gameObjs);
+
+		void EnableDepthStencilState();
+		void DisableDepthStencilState();
 	};
 }

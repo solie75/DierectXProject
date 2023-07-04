@@ -3,7 +3,7 @@
 #include "CResources.h"
 #include "CTransform.h"
 #include "CCamera.h"
-#include "CCameraScript.h"
+//#include "CCameraScript.h"
 
 namespace sh
 {
@@ -17,7 +17,7 @@ namespace sh
 	{
 		{
 			CGameObject* leftDoor = new CGameObject();
-			AddGameObject(eLayerType::Background, leftDoor);
+			AddGameObject(eLayerType::Background, leftDoor, L"LeftDoor");
 			CMeshRenderer* mr = leftDoor->AddComponent<CMeshRenderer>();
 			mr->SetMesh(CResources::Find<CMesh>(L"RectMesh"));
 			mr->SetMaterial(CResources::Find<CMaterial>(L"SpriteMaterial1"));
@@ -27,7 +27,7 @@ namespace sh
 		}
 		{
 			CGameObject* rightDoor = new CGameObject();
-			AddGameObject(eLayerType::Background, rightDoor);
+			AddGameObject(eLayerType::Background, rightDoor, L"RightDoor");
 			CMeshRenderer* mr = rightDoor->AddComponent<CMeshRenderer>();
 			mr->SetMesh(CResources::Find<CMesh>(L"RectMesh"));
 			mr->SetMaterial(CResources::Find<CMaterial>(L"SpriteMaterial2"));
@@ -37,10 +37,10 @@ namespace sh
 
 		// Main Camera
 		CGameObject* camera = new CGameObject();
-		AddGameObject(eLayerType::Player, camera);
+		AddGameObject(eLayerType::Player, camera, L"MainCamera");
 		camera->GetComponent<CTransform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 		CCamera* cameraComp = camera->AddComponent<CCamera>();
-		camera->AddComponent<CCameraScript>();
+		//camera->AddComponent<CCameraScript>();
 	}
 	void CStartMenuScene::Update()
 	{

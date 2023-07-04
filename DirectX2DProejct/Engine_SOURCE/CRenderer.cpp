@@ -178,7 +178,7 @@ namespace render
 		indexes.push_back(0);
 		indexes.push_back(2);
 		indexes.push_back(3);
-		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
+		mesh->CreateIndexBuffer(indexes.data(), (UINT)indexes.size());
 
 
 		constantBuffer[(UINT)eCBType::Transform] = new CConstantBuffer(eCBType::Transform);
@@ -203,80 +203,373 @@ namespace render
 		
 		//std::shared_ptr<CTexture> texture 
 		//	= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
-		{
+		/*{
 			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
 
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
-			spriteMaterial->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
+			spriteMaterial->SetShader(spriteShader); 
 			spriteMaterial->SetTexture(texture);
-			CResources::Insert(L"SpriteMaterial0", spriteMaterial);
-
-			texture->BindShader(eShaderStage::PS, 0);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Link", spriteMaterial);
 		}
 		{
-			std::shared_ptr<CTexture> texture0
+			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"dokgak", L"..\\Resources\\Texture\\dokgak.png");
 
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
-			spriteMaterial->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
-			spriteMaterial->SetTexture(texture0);
-			CResources::Insert(L"SpriteMaterial", spriteMaterial);
+			spriteMaterial->SetShader(spriteShader); 
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_dokgak", spriteMaterial);
+		}{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"spriteMaterial_Smile", spriteMaterial);
+		}*/
 
-			texture0->BindShader(eShaderStage::PS, 0);
+
+		// will
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Will", L"..\\Resources\\Texture\\Will.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Will", spriteMaterial);
+		}
+		// UI
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"UI_Base_Circle", L"..\\Resources\\Texture\\UI_Base_Circle.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Cash_UI_Base_Circle", spriteMaterial);
+			CResources::Insert(L"SpriteMaterial_Weapon_UI_Base_Circle", spriteMaterial);
+			CResources::Insert(L"SpriteMaterial_Inventory_UI_Base_Circle", spriteMaterial);
+		}
+
+
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Bag", L"..\\Resources\\Texture\\Bag.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Bag_UI", spriteMaterial);
+		}
+
+
+
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Health_UI_Circle", L"..\\Resources\\Texture\\HealthBar_Circle.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Health_UI_Circle", spriteMaterial);
 		}
 		{
-			std::shared_ptr<CTexture> texture1
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"HealthBar_UI_Base", L"..\\Resources\\Texture\\HealthBar_Base.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_HealthBar_UI_Base", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Gold4", L"..\\Resources\\Texture\\Gold4.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Gold4", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Health_Icon", L"..\\Resources\\Texture\\Health_Icon.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Health_Icon", spriteMaterial);
+		}
+
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"HUD_Set1", L"..\\Resources\\Texture\\HUD_Set1.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_HUD_Set1", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"HUD_Set2", L"..\\Resources\\Texture\\HUD_Set2.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_HUD_Set2", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"YesNo_Circle", L"..\\Resources\\Texture\\YesNo_Circle.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_YesNo_Circle", spriteMaterial);
+		}
+
+		
+		// main menu
+		{
+			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"Start_Intro_Door_Left", L"..\\Resources\\Texture\\Start_Intro_Door_Left.png");
 
-			std::shared_ptr<CMaterial> spriteMaterial1 = std::make_shared<CMaterial>();
-			spriteMaterial1->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
-			spriteMaterial1->SetTexture(texture1);
-			CResources::Insert(L"SpriteMaterial1", spriteMaterial1);
-
-			texture1->BindShader(eShaderStage::PS, 0);
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader); 
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"spriteMaterial_Start_Intro_Door_Left", spriteMaterial);
 		}
 		{
-			std::shared_ptr<CTexture> texture2
+			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"Start_Intro_Door_Right", L"..\\Resources\\Texture\\Start_Intro_Door_Right.png");
 
-			std::shared_ptr<CMaterial> spriteMaterial2 = std::make_shared<CMaterial>();
-			spriteMaterial2->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
-			spriteMaterial2->SetTexture(texture2);
-			CResources::Insert(L"SpriteMaterial2", spriteMaterial2);
-			texture2->BindShader(eShaderStage::PS, 0);
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"spriteMaterial_Start_Intro_Door_Right", spriteMaterial);
 		}
+		// shop
 		{
-			std::shared_ptr<CTexture> texture3
-				= CResources::Load<CTexture>(L"Village_Backgraound", L"..\\Resources\\Texture\\Village_Background.png");
-
-			std::shared_ptr<CMaterial> spriteMaterial3 = std::make_shared<CMaterial>();
-			spriteMaterial3->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
-			spriteMaterial3->SetTexture(texture3);
-			CResources::Insert(L"SpriteMaterial3", spriteMaterial3);
-			texture3->BindShader(eShaderStage::PS, 0);
-		}
-		{
-			std::shared_ptr<CTexture> texture4
+			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"Shop_Background", L"..\\Resources\\Texture\\Shop_Background.png");
 
-			std::shared_ptr<CMaterial> spriteMaterial4 = std::make_shared<CMaterial>();
-			spriteMaterial4->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
-			spriteMaterial4->SetTexture(texture4);
-			CResources::Insert(L"SpriteMaterial4", spriteMaterial4);
-			texture4->BindShader(eShaderStage::PS, 0);
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"spriteMaterial_Shop_Background", spriteMaterial);
+		}
+		// village
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Backgraound", L"..\\Resources\\Texture\\Village_Background.png");
+
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"spriteMaterial_Village_Background", spriteMaterial);
 		}
 		{
-			std::shared_ptr<CTexture> texture5
-				= CResources::Load<CTexture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
-
-			std::shared_ptr<CMaterial> spriteMaterial5 = std::make_shared<CMaterial>();
-			spriteMaterial5->SetShader(spriteShader); // Material 에 shader 를 저장하면서 왜 위에서 spriteShader 를 따로 insert 하고 있지?
-			spriteMaterial5->SetTexture(texture5);
-			spriteMaterial5->SetRenderingMode(eRenderingMode::Transparent);
-			CResources::Insert(L"SpriteMaterial5", spriteMaterial5);
-			texture5->BindShader(eShaderStage::PS, 0);
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"WillsHome", L"..\\Resources\\Texture\\WillsHome.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader); 
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_WillsHome", spriteMaterial);
 		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_House_01", L"..\\Resources\\Texture\\Village_House_01.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_House_01", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Blacksmith_House_old", L"..\\Resources\\Texture\\Village_Blacksmith_House_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Blacksmith_House_old", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Blacksmith_Roof_old", L"..\\Resources\\Texture\\Village_Blacksmith_Roof_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Blacksmith_Roof_old", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Blacksmith_Stand1_old", L"..\\Resources\\Texture\\Village_Blacksmith_Stand1_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Blacksmith_Stand1_old", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Blacksmith_Stand2_old", L"..\\Resources\\Texture\\Village_Blacksmith_Stand2_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Village_Blacksmith_Stand2_old", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Blacksmith_Fence", L"..\\Resources\\Texture\\Village_Blacksmith_Fence.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Blacksmith_Fence", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_House_06", L"..\\Resources\\Texture\\Village_House_06.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_House_06", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_House_05", L"..\\Resources\\Texture\\Village_House_05.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_House_05", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_House_02", L"..\\Resources\\Texture\\Village_House_02.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_House_02", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Awning", L"..\\Resources\\Texture\\Village_Awning.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Awning", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Board", L"..\\Resources\\Texture\\Village_Board.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Board", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Fence_Column", L"..\\Resources\\Texture\\Village_Fence_Column.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Village_Fence_Column", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Fence_Row", L"..\\Resources\\Texture\\Village_Fence_Row.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Village_Fence_Row", spriteMaterial);
+		}
+		// witch
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Witch_House_old", L"..\\Resources\\Texture\\Village_Witch_House_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Witch_House_old", spriteMaterial);
+		} 
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Witch_Roof_old", L"..\\Resources\\Texture\\Village_Witch_Roof_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			CResources::Insert(L"SpriteMaterial_Village_Witch_Roof_old", spriteMaterial);
+		} 
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Witch_Table_old", L"..\\Resources\\Texture\\Village_Witch_Table_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Witch_Table_old", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Witch_Storage_old", L"..\\Resources\\Texture\\Village_Witch_Storage_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Witch_Storage_old", spriteMaterial);
+		}
+		//rival
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Rival_House_old", L"..\\Resources\\Texture\\Village_Rival_House_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Rival_House_old", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Rival_Roof_old", L"..\\Resources\\Texture\\Village_Rival_Roof_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Rival_Roof_old", spriteMaterial);
+		}
+		{
+			std::shared_ptr<CTexture> texture
+				= CResources::Load<CTexture>(L"Village_Rival_Fountain_old", L"..\\Resources\\Texture\\Village_Rival_Fountain_old.png");
+			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			CResources::Insert(L"SpriteMaterial_Village_Rival_Fountain_old", spriteMaterial);
+		}
+		
 	}
 
 	void Initialize()

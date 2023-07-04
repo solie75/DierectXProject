@@ -21,7 +21,7 @@ namespace sh
 		virtual void OnEnter();
 		virtual void OnExit();
 
-		void AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj);
+		void AddGameObject(sh::enums::eLayerType type, CGameObject* gameObj, const std::wstring& name);
 
 		/*template <typename T>
 		std::vector<T*> FindObjectsOfType()

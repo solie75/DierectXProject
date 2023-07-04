@@ -22,7 +22,7 @@ namespace sh
 	{
 		for (UINT i = 0; i < (UINT)eKeyCode::END; i++)
 		{
-			Key keyInfo;
+			Key keyInfo = {};
 			keyInfo.key = (eKeyCode)i;
 			keyInfo.state = eKeyState::None;
 			keyInfo.bPressed = false;
@@ -64,8 +64,8 @@ namespace sh
 			GetCursorPos(&mousePos);
 
 			ScreenToClient(application.GetHwnd(), &mousePos);
-			mMousePos.x = mousePos.x;
-			mMousePos.y = mousePos.y;
+			mMousePos.x = (float)mousePos.x;
+			mMousePos.y = (float)mousePos.y;
 		}
 		else
 		{

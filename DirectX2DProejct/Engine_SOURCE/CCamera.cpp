@@ -9,6 +9,15 @@ extern sh::CApplication application;
 
 namespace sh
 {
+    bool  CompareZSort(CGameObject* a, CGameObject* b)
+    {
+        if (a->GetComponent<CTransform>()->GetPosition().z < b->GetComponent<CTransform>()->GetPosition().z)
+        {
+            return false;
+        }
+        return true;
+    }
+
     Matrix CCamera::View = Matrix::Identity;
     Matrix CCamera::Projection = Matrix::Identity;
 
@@ -50,11 +59,16 @@ namespace sh
         View = mView;
         Projection = mProjection;
 
-        SortGameObjects();
+        AlphaSortGameObjects();
+        ZSortTransparencyGameObjects();
 
         RenderOpaque();
+
+        DisableDepthStencilState();
         RenderCutOut();
         RenderTransparent();
+
+        EnableDepthStencilState();
     }
     bool CCamera::CreateViewMatrix()
     {
@@ -83,9 +97,9 @@ namespace sh
     {
         RECT rect = {};
         GetClientRect(application.GetHwnd(), &rect);
-        float width = rect.right - rect.left;
-        float height = rect.bottom - rect.top;
-        mAspectRatio = width / height;
+        float width = float(rect.right - rect.left);
+        float  height = float(rect.bottom - rect.top);
+        mAspectRatio = (float)(width / height);
 
         if (type == eProjectionType::OrthoGraphic)
         {
@@ -144,50 +158,68 @@ namespace sh
     {
         render::cameras.push_back(this); // 여기에서 this 는 무엇인가
     }
-    void CCamera::SortGameObjects()
+   
+    void CCamera::AlphaSortGameObjects()
     {
         mOpaqueGameObjects.clear();
         mCutOutGameObjects.clear();
         mTransparentGameObjects.clear();
 
+        // alpha sorting
         CScene* scene = CSceneManager::GetActiveScene();
         for (size_t i = 0; i < (UINT)eLayerType::End; i++)
         {
-            // 활성화 된 레이어의 모든 게임 오브젝트를 renderingMode 에 따라 분류한다.
             if (mLayerMask[i] == true)
             {
                 CLayer& layer = scene->GetLayer((eLayerType)i);
-                // layer에 있는 게임 오브젝트를 가져온다.
                 const std::vector<CGameObject*> gameObjs = layer.GetGameObjects();
-                
-                for (CGameObject* obj : gameObjs)
-                {
-                    CMeshRenderer* mr = obj->GetComponent<CMeshRenderer>();
-                    if (mr == nullptr)
-                    {
-                        continue;
-                    }
 
-                    std::shared_ptr<CMaterial> mt = mr->GetMaterial();
-                    eRenderingMode mode = mt->GetRenderingMode();
-
-                    switch (mode)
-                    {
-                    case sh::graphics::eRenderingMode::Opaque :
-                        mOpaqueGameObjects.push_back(obj);
-                        break;
-                    case sh::graphics::eRenderingMode::CutOut :
-                        mCutOutGameObjects.push_back(obj);
-                        break;
-                    case sh::graphics::eRenderingMode::Transparent:
-                        mTransparentGameObjects.push_back(obj);
-                        break;
-                    default :
-                        break;
-                    }
-                }
+                DivideAlphaBlendGameObjects(gameObjs);
             }
         }
-
+    }
+    void CCamera::ZSortTransparencyGameObjects()
+    {
+        std::sort(mCutOutGameObjects.begin(), mCutOutGameObjects.end(), CompareZSort);
+        std::sort(mTransparentGameObjects.begin(), mTransparentGameObjects.end(), CompareZSort);
+    }
+    void CCamera::DivideAlphaBlendGameObjects(const std::vector<CGameObject*> gameObjs)
+    {
+        for (CGameObject* obj : gameObjs)
+        {
+            CMeshRenderer* mr = obj->GetComponent<CMeshRenderer>();
+            if (mr == nullptr)
+            {
+                continue;
+            }
+            std::shared_ptr<CMaterial> mt = mr->GetMaterial();
+            eRenderingMode mode = mt->GetRenderingMode();
+            switch (mode)
+            {
+            case graphics::eRenderingMode::Opaque :
+                mOpaqueGameObjects.push_back(obj);
+                break;
+            case graphics::eRenderingMode::CutOut :
+                mCutOutGameObjects.push_back(obj);
+                break;
+            case graphics::eRenderingMode::Transparent :
+                mTransparentGameObjects.push_back(obj);
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    void CCamera::EnableDepthStencilState()
+    {
+        Microsoft::WRL::ComPtr<ID3D11DepthStencilState> dsState 
+            = render::depthStencilStates[(UINT)eDSType::Less];
+        GetDevice()->BindDepthStencilState(dsState.Get());
+    }
+    void CCamera::DisableDepthStencilState()
+    {
+        Microsoft::WRL::ComPtr<ID3D11DepthStencilState> dsState
+            = render::depthStencilStates[(UINT)eDSType::None];
+        GetDevice()->BindDepthStencilState(dsState.Get());
     }
 }

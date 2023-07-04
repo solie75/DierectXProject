@@ -1,9 +1,5 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(client.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  main.cpp
-C:\Users\shinjoongeun\Documents\GitHub\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
+  CRenderer.cpp
+D:\신중은\DierectXProject\DirectX2DProejct\Engine_SOURCE\CMath.h(16,1): warning C4005: 'XM_CONSTEXPR': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\DirectXMath.h(37): message : 'XM_CONSTEXPR'의 이전 정의를 참조하십시오.
-CShopScene.obj : error LNK2001: 확인할 수 없는 외부 기호 "public: virtual void __cdecl sh::CCameraScript::Update(void)" (?Update@CCameraScript@sh@@UEAAXXZ)
-CStartMenuScene.obj : error LNK2001: 확인할 수 없는 외부 기호 "public: virtual void __cdecl sh::CCameraScript::Update(void)" (?Update@CCameraScript@sh@@UEAAXXZ)
-CVillageScene.obj : error LNK2001: 확인할 수 없는 외부 기호 "public: virtual void __cdecl sh::CCameraScript::Update(void)" (?Update@CCameraScript@sh@@UEAAXXZ)
-main.obj : error LNK2019: "public: __cdecl sh::CPlayScene::CPlayScene(void)" (??0CPlayScene@sh@@QEAA@XZ)"public: static bool __cdecl sh::CSceneManager::CreateScene<class sh::CPlayScene>(class std::basic_string<wchar_t,struct std::char_traits<wchar_t>,class std::allocator<wchar_t> >)" (??$CreateScene@VCPlayScene@sh@@@CSceneManager@sh@@SA_NV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@Z) 함수에서 참조되는 확인할 수 없는 외부 기호
-C:\Users\shinjoongeun\Documents\GitHub\DierectXProject\DirectX2DProejct\x64\Debug\Editor_Window.exe : fatal error LNK1120: 2개의 확인할 수 없는 외부 참조입니다.
+  client.vcxproj -> D:\신중은\DierectXProject\DirectX2DProejct\x64\Debug\Editor_Window.exe

@@ -45,7 +45,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CTransform.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CVillageScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)CApplication.cpp" />
@@ -73,7 +72,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CTransform.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CVillageScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CMath.inl" />

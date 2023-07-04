@@ -34,7 +34,8 @@ namespace sh::graphics
 		}
 		else // WIC (png, jpg, jpeg, bmp )
 		{
-			if (FAILED(LoadFromWICFile(path.c_str(), WIC_FLAGS::WIC_FLAGS_NONE, nullptr, mImage)))
+			// WIC_FLAGS가 WIC_FLAGS_NONE 일 때에는 본래의 이미지 보다 어둡게 나와서 WIC_FLAGS_IGRNOE_SRGB 로 변경함
+			if (FAILED(LoadFromWICFile(path.c_str(), WIC_FLAGS::WIC_FLAGS_IGNORE_SRGB, nullptr, mImage)))
 				return S_FALSE;
 		}
 

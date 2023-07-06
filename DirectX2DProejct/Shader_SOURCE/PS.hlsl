@@ -1,3 +1,4 @@
+#include "globals.hlsli"
 struct VSIn
 {
     float3 Pos : POSITION;
@@ -14,13 +15,8 @@ struct VSOut
 
 Texture2D smileTexture : register(t0);
 
-// 두 가지 samplerState 사용
-SamplerState pointerSampler : register(s0);
-SamplerState anisotropicSampler : register(s1);
-
 float4 main(VSOut In) : SV_TARGET
 {
-    //return In.Color;
     float4 color = (float) 0.0f;
     color = smileTexture.Sample(anisotropicSampler, In.UV);
     

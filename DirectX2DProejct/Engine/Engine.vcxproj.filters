@@ -17,6 +17,9 @@
     <ClInclude Include="..\Engine_SOURCE\CShopScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine_SOURCE\CGridScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -31,6 +34,9 @@
     </ClCompile>
     <ClCompile Include="..\Engine_SOURCE\CShopScene.cpp">
       <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_SOURCE\CGridScript.cpp">
+      <Filter>Contents\Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,7 @@ namespace sh::enums
 
 	enum class eLayerType
 	{
+		Grid,
 		Player,
 		Monster,
 		UI,

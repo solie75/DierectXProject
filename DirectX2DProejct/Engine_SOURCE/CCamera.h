@@ -67,5 +67,7 @@ namespace sh
 
 		void EnableDepthStencilState();
 		void DisableDepthStencilState();
+
+		float GetSize() { return mSize; }
 	};
 }

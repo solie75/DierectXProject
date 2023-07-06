@@ -65,6 +65,9 @@ namespace render
 		sh::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
+
+		shader = sh::CResources::Find<CShader>(L"GridShader");
+		sh::graphics::GetDevice()->CreateInputLayout(arrLayout, 3, shader->GetVSCode(), shader->GetInputLayoutAddressOf());
 #pragma endregion
 #pragma region SamplerState
 		D3D11_SAMPLER_DESC samplerDecs = {};
@@ -180,27 +183,53 @@ namespace render
 		indexes.push_back(3);
 		mesh->CreateIndexBuffer(indexes.data(), (UINT)indexes.size());
 
-
+		// Constant Buffer
 		constantBuffer[(UINT)eCBType::Transform] = new CConstantBuffer(eCBType::Transform);
 		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));
 
+		// Grid Buffer
+		constantBuffer[(UINT)eCBType::Grid] = new CConstantBuffer(eCBType::Grid);
+		constantBuffer[(UINT)eCBType::Grid]->Create(sizeof(TransformCB));
 	}
 
 	void LoadShader()
 	{
-		//shader = new sh::CShader();
-		/*CShader* shader = new sh::CShader();
-		shader->Create(eShaderStage::VS, L"VS.hlsl", "main");
-		shader->Create(eShaderStage::PS, L"PS.hlsl", "main");
-		CResources::Insert(L"TriangleShader", shader);*/
-
-
-
 		std::shared_ptr<CShader> spriteShader = std::make_shared<CShader>();
 		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
 		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 		CResources::Insert(L"SpriteShader", spriteShader);
+
+		std::shared_ptr<CShader> gridShader = std::make_shared<CShader>();
+		gridShader->Create(eShaderStage::VS, L"GridVS.hlsl", "main");
+		gridShader->Create(eShaderStage::PS, L"GridPS.hlsl", "main");
+		CResources::Insert(L"GridShader", gridShader);
 		
+		
+		
+	}
+
+	void LoadMesh()
+	{
+		Vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
+		Vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		Vertexes[0].uv = Vector2(0.0f, 0.0f);
+
+		Vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
+		Vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		Vertexes[1].uv = Vector2(1.0f, 0.0f);
+
+		Vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
+		Vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		Vertexes[2].uv = Vector2(1.0f, 1.0f);
+
+		Vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		Vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		Vertexes[3].uv = Vector2(0.0f, 1.0f);
+	}
+
+	void LoadMaterial()
+	{
+		std::shared_ptr<CShader> spriteShader = CResources::Find<CShader>(L"SpriteShader");
 		//std::shared_ptr<CTexture> texture 
 		//	= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
 		/*{
@@ -208,7 +237,7 @@ namespace render
 				= CResources::Load<CTexture>(L"Link", L"..\\Resources\\Texture\\Link.png");
 
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
-			spriteMaterial->SetShader(spriteShader); 
+			spriteMaterial->SetShader(spriteShader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			CResources::Insert(L"SpriteMaterial_Link", spriteMaterial);
@@ -218,7 +247,7 @@ namespace render
 				= CResources::Load<CTexture>(L"dokgak", L"..\\Resources\\Texture\\dokgak.png");
 
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
-			spriteMaterial->SetShader(spriteShader); 
+			spriteMaterial->SetShader(spriteShader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			CResources::Insert(L"SpriteMaterial_dokgak", spriteMaterial);
@@ -231,7 +260,6 @@ namespace render
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			CResources::Insert(L"spriteMaterial_Smile", spriteMaterial);
 		}*/
-
 
 		// will
 		{
@@ -334,14 +362,14 @@ namespace render
 			CResources::Insert(L"SpriteMaterial_YesNo_Circle", spriteMaterial);
 		}
 
-		
+
 		// main menu
 		{
 			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"Start_Intro_Door_Left", L"..\\Resources\\Texture\\Start_Intro_Door_Left.png");
 
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
-			spriteMaterial->SetShader(spriteShader); 
+			spriteMaterial->SetShader(spriteShader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
 			CResources::Insert(L"spriteMaterial_Start_Intro_Door_Left", spriteMaterial);
@@ -382,7 +410,7 @@ namespace render
 			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"WillsHome", L"..\\Resources\\Texture\\WillsHome.png");
 			std::shared_ptr<CMaterial> spriteMaterial = std::make_shared<CMaterial>();
-			spriteMaterial->SetShader(spriteShader); 
+			spriteMaterial->SetShader(spriteShader);
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
 			CResources::Insert(L"SpriteMaterial_WillsHome", spriteMaterial);
@@ -513,7 +541,7 @@ namespace render
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
 			CResources::Insert(L"SpriteMaterial_Village_Witch_House_old", spriteMaterial);
-		} 
+		}
 		{
 			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"Village_Witch_Roof_old", L"..\\Resources\\Texture\\Village_Witch_Roof_old.png");
@@ -522,7 +550,7 @@ namespace render
 			spriteMaterial->SetTexture(texture);
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			CResources::Insert(L"SpriteMaterial_Village_Witch_Roof_old", spriteMaterial);
-		} 
+		}
 		{
 			std::shared_ptr<CTexture> texture
 				= CResources::Load<CTexture>(L"Village_Witch_Table_old", L"..\\Resources\\Texture\\Village_Witch_Table_old.png");
@@ -569,31 +597,17 @@ namespace render
 			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
 			CResources::Insert(L"SpriteMaterial_Village_Rival_Fountain_old", spriteMaterial);
 		}
-		
 	}
+
 
 	void Initialize()
 	{
-		Vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
-		Vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-		Vertexes[0].uv = Vector2(0.0f, 0.0f);
 		
-		Vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
-		Vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
-		Vertexes[1].uv = Vector2(1.0f, 0.0f);
-		
-		Vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
-		Vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-		Vertexes[2].uv = Vector2(1.0f, 1.0f);
-		
-		Vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
-		Vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-		Vertexes[3].uv = Vector2(0.0f, 1.0f);
-
+		LoadMesh();
 		LoadBuffer();
 		LoadShader();
 		SetupState();
-
+		LoadMaterial();
 	}
 
 	void Render()

@@ -33,6 +33,13 @@ namespace render
 		Matrix mProjection;
 	};
 
+	CBUFFER(GridCB, CBSLOT_GRID)
+	{
+		Vector4 CameraPosition;
+		Vector2 CameraScale;
+		Vector2 Resolution;
+	};
+
 	//extern Transform transform;
 	/*extern sh::CMesh* RectangleMesh;
 	extern sh::CShader* shader;*/

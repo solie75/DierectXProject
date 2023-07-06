@@ -1,4 +1,4 @@
-
+#include "globals.hlsli"
 struct VSIn
 {
     float3 Pos : POSITION;
@@ -24,9 +24,6 @@ VSOut main(VSIn In)
     VSOut Out = (VSOut) 0.0f;
     
     Out.Pos = float4(In.Pos, 1.0f);
-    // Out.Pos.x += 0.4f; // 상수버퍼를 통해 데이터(inputPosX)가 넘어와야 한다.
-    //Out.Pos.x += Pos.x;
-    //Out.Pos.y += Pos.y;
     Out.UV = In.UV;
     Out.Color = In.Color;
     
